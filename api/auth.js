@@ -17,9 +17,8 @@ export const AuthProvider = ({ children }) => {
             user,
             login: () => {
                 /*const fakeUser = { mail: ' Shlamovitzd@gmail.com' }
-                setUser(fakeUser)
-                AsyncStorage.setItem('user', JSON.stringify(fakeUser))*/
-                return 'hola';
+                setUser(fakeUser)*/
+                // AsyncStorage.setItem('user', JSON.stringify(fakeUser))
             },
             logout: () => {
                 AsyncStorage.removeItem('user')

@@ -14,7 +14,7 @@ export const HomeStack = ({ }) => {
             headerBackAllowFontScaling: true,
             headerShown: 'float',
             headerTitleStyle: { color: '#333', fontWeight: '700' },
-        }}>
+        }} >
             <Stack.Screen name='Inicio' options={{
 
             }} component={Home} />

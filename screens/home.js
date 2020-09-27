@@ -1,62 +1,55 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { globalStyles } from '../styles/global'
-import ScrollCategorias from '../components/scrollCategory'
 import IComida from '../assets/food.jpg'
 import ILibreria from '../assets/library.jpg'
 import IFruta from '../assets/market2.jpg'
-
+import ScrollHorizontal from '../components/scrollHorizontal';
+import FloatList from '../components/floatList'
+import { ScrollView } from 'react-native-gesture-handler';
 export default function Home({ navigation }) {
+
+    const datos = [
+        {
+            imagen: IComida,
+            txt: 'Restaurantes'
+        },
+        {
+            imagen: IComida,
+            txt: 'buenas buenas'
+        },
+        {
+            imagen: IComida,
+            txt: 'buenas buenas'
+        },
+        {
+            imagen: IComida,
+            txt: 'Restaurantes'
+        },
+        {
+            imagen: IComida,
+            txt: 'Restaurantes'
+        },
+        {
+            imagen: IFruta,
+            txt: 'buenas buenas'
+        },
+        {
+            imagen: ILibreria,
+            txt: 'buenas buenas'
+        },
+        {
+            imagen: IFruta,
+            txt: 'Buenas buenas'
+        },
+    ]
     return (
-        <View style={globalStyles.screenContainer}>
-            <ScrollCategorias navigation={navigation} title='Categorías' data={[
-                {
-                    image: IComida,
-                    txt: 'Restaurantes'
-                },
-                {
-                    image: ILibreria,
-                    txt: 'Librerías'
-
-                },
-                {
-                    image: IFruta,
-                    txt: 'Verdulerías'
-                },
-                {
-                    image: IComida,
-                    txt: 'Restaurantes'
-                },
-                {
-                    image: IFruta,
-                    txt: 'Verdulerías'
-
-                },
-            ]} />
-            <ScrollCategorias navigation={navigation} title='Categorías' data={[
-                {
-                    image: IComida,
-                    txt: ''
-                },
-                {
-                    image: ILibreria,
-                    txt: ''
-
-                },
-                {
-                    image: IFruta,
-                    txt: ''
-                },
-                {
-                    image: IComida,
-                    txt: ''
-                },
-                {
-                    image: IFruta,
-                    txt: ''
-
-                },
-            ]} />
-        </View>
+        <SafeAreaView>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={globalStyles.screenContainer}>
+                    <FloatList navigation={navigation} data={datos} />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }

@@ -8,7 +8,6 @@ export function Login({ navigation }) {
     const [mail, setMail] = useState();
     const [pass, setPass] = useState();
     const { user, login, logout } = useContext(AuthContext) //NO ANDA
-
     return (
         <View style={globalStyles.screenContainer}>
             <ImageBackground source={BGprueba} style={globalStyles.bg}>
@@ -30,7 +29,7 @@ export function Login({ navigation }) {
                         onChangeText={(password) => setPass(password)}
                     />
                     <View>
-                        <TouchableOpacity style={globalStyles.btnAzul} onPress={() => { login(); }}>
+                        <TouchableOpacity style={globalStyles.btnAzul} onPress={() => { login() }}>
                             <Text style={globalStyles.btnTxt}>Aceptar</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={globalStyles.btnAzul} onPress={() => navigation.navigate('Start')}>

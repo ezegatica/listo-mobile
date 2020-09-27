@@ -1,16 +1,20 @@
 import React from 'react'
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
-export default function ScrollCategorias({ title, data, navigation }) {
+export default function ScrollHorizontal({ title, data, navigation }) {
     return (
         <View style={styles.container} >
             <View style={styles.scrolContainer}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.titleTxt}>{title}</Text>
-                    <View style={styles.verMasView}>
-                        <TouchableOpacity style={styles.verMas}>
-                            <Text style={styles.verMasTxt}>ver todos</Text>
-                        </TouchableOpacity>
+                    <View style={styles.titleTxtContainer}>
+                        <Text style={styles.titleTxt}>{title}</Text>
+                    </View>
+                    <View style={styles.xxx}>
+                        <View style={styles.verMasView}>
+                            <TouchableOpacity style={styles.verMas}>
+                                <Text style={styles.verMasTxt}>ver todos</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 <ScrollView showsHorizontalScrollIndicator={false} style={styles.scroll} horizontal={true}>
@@ -19,11 +23,14 @@ export default function ScrollCategorias({ title, data, navigation }) {
                         return (
                             <TouchableOpacity style={styles.scrollItemContainer} key={i} onPress={
                                 () => navigation.navigate('Categoria', {
-                                    name: n,
+                                    num: n,
+                                    nombre: data.txt,
+                                    locales: data.locales,
                                 })
                             }>
-                                <Image style={styles.scrollItem} source={data.image} />
-                                <Text style={styles.itemTxt}>{data.txt}</Text>
+                                <View style={styles.shadow}>
+                                    <Image style={styles.scrollItem} source={data.image} />
+                                </View>
                             </TouchableOpacity>
                         )
                     })}
@@ -38,13 +45,23 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     scrolContainer: {
-        marginTop: 30,
+        marginTop: 2,
+        backgroundColor: '#fcfcff',
+        paddingVertical: 15,
+        borderRadius: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.12,
+        shadowRadius: 2.46,
+
     },
     titleTxt: {
         fontSize: 25,
         fontWeight: "bold",
         marginBottom: 18,
-        marginHorizontal: 10,
     },
     scroll: {
         marginBottom: 0
@@ -55,18 +72,28 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     scrollItem: {
-        height: 95,
-        width: 95,
+        height: 77,
+        width: 77,
+        marginBottom: 6,
         borderRadius: 15,
         shadowColor: "#000",
+        shadowOffset: {
+            width: 10,
+            height: 10,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 2.46,
+
     },
     itemTxt: {
-        fontSize: 14,
+        fontSize: 13,
         paddingTop: 3,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: '#333'
     },
     titleContainer: {
         flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     verMas: {
         padding: 4,
@@ -82,19 +109,33 @@ const styles = StyleSheet.create({
 
         elevation: 9,
     },
+    titleTxtContainer: {
+        marginLeft: 15
+    },
     verMasTxt: {
         paddingHorizontal: 7,
         fontSize: 16,
-        color: '#72bcd4',
+        color: '#4fc3f7',
         fontWeight: '700'
 
     },
     verMasView: {
-        alignContent: 'center',
         justifyContent: "center",
-        marginLeft: 150,
         marginBottom: 18,
-        marginRight: 20,
+        marginRight: 15,
     },
+    shadow: {
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 1, height: 2 },
+                shadowOpacity: 0.8,
+                shadowRadius: 2,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
 
+    },
 })

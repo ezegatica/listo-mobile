@@ -29,7 +29,7 @@ export const AppTabs = ({ }) => {
             title: () => { },
         })}
             tabBarOptions={{
-                activeTintColor: 'blue',
+                activeTintColor: '#01579B',
                 inactiveTintColor: '#696969',
                 tabStyle: { backgroundColor: '#ffffff', },
 
