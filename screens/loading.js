@@ -4,7 +4,7 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native'
 export default function Loading({ }) {
     return (
         <View style={styles.screenContainer}>
-            <View>
+            <View style={styles.screenContainer}>
                 <ActivityIndicator style={styles.act} size='large' />
             </View>
         </View>

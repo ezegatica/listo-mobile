@@ -1,4 +1,9 @@
 import React from 'react';
+import Ihamburguesa from '../assets/hamburguesa.png'
+import Isandwiches from '../assets/galletita.png'
+import Isushi from '../assets/sushi.png'
+import Ipollo from '../assets/jamon.png'
+import Iempanadas from '../assets/taco.png'
 import Cards from '../components/card'
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { globalStyles } from '../styles/global'
@@ -10,16 +15,24 @@ export default class Categoria extends React.Component {
         restaurantes: null,
         categorias: [
             {
-                txt: 'sushi'
+                txt: 'sushi',
+                image: Isushi
             },
             {
-                txt: 'pollo'
+                txt: 'pollo',
+                image: Ipollo
             },
             {
-                txt: 'empanadas'
+                txt: 'empanadas',
+                image: Iempanadas,
             },
             {
-                txt: 'sandwiches'
+                txt: 'sandwiches',
+                image: Isandwiches
+            },
+            {
+                txt: 'hamburguesas',
+                image: Ihamburguesa
             }
         ],
     }

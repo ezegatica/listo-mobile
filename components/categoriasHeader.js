@@ -1,4 +1,5 @@
 import React from 'react'
+import Itodos from '../assets/verTodos.png'
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import CatSeleccionada from '../components/catSeleccionada'
 import CatDefault from '../components/catDefault'
@@ -66,6 +67,7 @@ export default class CategoriasHeader extends React.Component {
                             this.setState({ cat: 'default', seHace: true })
                             this.restosDeLaCat()
                         }}>
+                            <Image style={styles.imagen} source={Itodos} />
                             <Text style={styles.catTxt}>ver todos</Text>
                         </TouchableOpacity>
                         {
@@ -75,7 +77,10 @@ export default class CategoriasHeader extends React.Component {
                                         this.setState({ cat: cat.txt, seHace: true })
                                         this.restosDeLaCat()
                                     }}>
-                                        <Text style={styles.catTxt}>{cat.txt}</Text>
+                                        <View style={styles.itemContainer}>
+                                            <Image style={styles.imagen} source={cat.image} />
+                                            <Text style={styles.catTxt}>{cat.txt}</Text>
+                                        </View>
                                     </TouchableOpacity>
                                 )
                             })
@@ -93,8 +98,7 @@ export default class CategoriasHeader extends React.Component {
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 15,
-        backgroundColor: 'white',
-        borderRadius: 10
+        backgroundColor: '#fcfcff',
     },
     catContainer: {
         marginHorizontal: 10,
@@ -102,10 +106,25 @@ const styles = StyleSheet.create({
     },
     catTxt: {
         textTransform: 'capitalize',
-        fontSize: 14,
-        fontWeight: 'bold'
+        fontSize: 11,
+        alignSelf: 'center'
     },
-    test: {
-        marginTop: 100
+    imagen: {
+        height: 60,
+        width: 60,
+        marginBottom: 6,
+        borderRadius: 15,
+        alignSelf: 'center',
+        overflow: 'hidden'
+
+    },
+    itemContainer: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.12,
+        shadowRadius: 2.46,
     }
 })
