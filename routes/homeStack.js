@@ -8,6 +8,7 @@ const Stack = createStackNavigator()
 
 export const HomeStack = ({ }) => {
     return (
+        
         <Stack.Navigator screenOptions={{
             headerTitleAlign: 'center',
             headerTitleAllowFontScaling: true,

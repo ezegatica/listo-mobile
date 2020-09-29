@@ -4,10 +4,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import Loading from '../screens/loading'
 import { AppTabs } from './tabs';
 import { StackAuth } from './authStack'
+import { YellowBox } from 'react-native';
 
+YellowBox.ignoreWarnings(['Setting a timer']);
 export const Routes = ({ }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null) // se deberia cambiar desde otro archivo
+    
     React.useEffect(() => {
         setTimeout(() => {
             setLoading(false)
