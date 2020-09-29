@@ -5,11 +5,12 @@ import CatSeleccionada from '../components/catSeleccionada'
 import CatDefault from '../components/catDefault'
 import firebase, { db } from '../api/firebase'
 import { ThemeProvider } from '@react-navigation/native'
+import Loading from '../screens/loading'
 //<Image source={cat.image}></Image>
 export default class CategoriasHeader extends React.Component {
     state = {
         cat: 'default',
-        seHace: true,
+        loading: true,
         restosDeLaCat: null,
         todosLosRestos: null,
     }
@@ -51,28 +52,24 @@ export default class CategoriasHeader extends React.Component {
             })
     }
     kcat = () => {
-        if (this.state.seHace) {
-            if (this.state.cat == 'default') {
-                return (
-                    <CatDefault data={this.state.todosLosRestos} />
-                )
-            }
-            else if (this.state.cat != 'default') {
-                let restosDelaCat = this.state.restosDeLaCat
-                //console.log('armando', restosDelaCat)
-                //console.log('-------------------------------------------------------------')
-                return (
-                    <CatSeleccionada data={restosDelaCat} />
-                )
+        if (this.state.cat == 'default') {
+            return (
+                <CatDefault data={this.state.todosLosRestos} />
+            )
+        }
+        else if (this.state.cat != 'default') {
+            let restosDelaCat = this.state.restosDeLaCat
+            //console.log('armando', restosDelaCat)
+            //console.log('-------------------------------------------------------------')
+            return (
+                <CatSeleccionada data={restosDelaCat} />
+            )
 
-            }
-            else if (!this.state.cat) {
-                return (
-                    <View>
-                        <Text>LO QUE ESTAS BUSCANDO NO EXISTE</Text>
-                    </View>
-                )
-            }
+        }
+        else if (!this.state.cat) {
+            return (
+                <Loading />
+            )
         }
     }
     render() {
@@ -81,13 +78,13 @@ export default class CategoriasHeader extends React.Component {
                 <View style={styles.container}>
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
                         <TouchableOpacity style={styles.catContainer} onPress={() => {
-                            this.setState({ cat: 'default', seHace: true })
+                            this.setState({ cat: 'default' })
                             this.restosDeLaCat()
                         }}>
                             <View style={styles.imageContainer}>
                                 <Image style={styles.imagen} source={Itodos} />
                             </View>
-                            <Text style={styles.catTxt}>ver todos</Text>
+                            <Text style={styles.catTxt}>todos</Text>
                         </TouchableOpacity>
                         {
                             this.props.data.map((cat, i) => {

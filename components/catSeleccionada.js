@@ -5,9 +5,6 @@ import firebase, { db } from '../api/firebase'
 import Loading from '../screens/loading'
 
 export default class CatSeleccionada extends React.Component {
-    state = {
-        restaurantes: null
-    }
 
     render() {
         if (this.props.data) {
@@ -17,7 +14,8 @@ export default class CatSeleccionada extends React.Component {
                 </ScrollView>
             )
         }
-        else {
+        if (!this.props.data) {
+            console.log('CARGANDO...');
             return (
                 <Loading />
             )

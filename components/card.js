@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         marginHorizontal: 10,
-        borderRadius: 3,
+        borderRadius: 2,
         overflow: "hidden",
     },
     restosContainer: {
