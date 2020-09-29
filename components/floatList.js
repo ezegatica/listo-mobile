@@ -63,12 +63,14 @@ const styles = StyleSheet.create({
         height: 75,
         width: 75,
         borderRadius: 15,
+        alignSelf: 'center'
     },
     itemTxt: {
         alignSelf: 'center',
         color: '#333',
         fontSize: 12,
         marginTop: 2,
+        alignSelf: 'center'
     },
     shadow: {
         ...Platform.select({

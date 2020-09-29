@@ -2,6 +2,12 @@ import React from 'react'
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 export default function ScrollHorizontal({ title, data, navigation }) {
+
+    const organizarDatos = () => {
+        data.map((cat, i) => {
+
+        })
+    }
     return (
         <View style={styles.container} >
             <View style={styles.scrolContainer}>
@@ -107,7 +113,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.22,
         shadowRadius: 3.46,
 
-        elevation: 9,
+        elevation: 1,
     },
     titleTxtContainer: {
         marginLeft: 15

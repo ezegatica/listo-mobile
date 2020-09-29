@@ -8,8 +8,8 @@ import firebase, { db } from '../api/firebase'
 export default class CategoriasHeader extends React.Component {
     state = {
         cat: 'default',
-        seHace: false,
-        restosDeLaCat: null
+        seHace: true,
+        restosDeLaCat: null,
     }
 
     restosDeLaCat = () => {
@@ -37,7 +37,7 @@ export default class CategoriasHeader extends React.Component {
         if (this.state.seHace) {
             if (this.state.cat == 'default') {
                 return (
-                    <CatDefault />
+                    <CatDefault data={this.props.data} />
                 )
             }
             else if (this.state.cat != 'default') {
@@ -67,7 +67,9 @@ export default class CategoriasHeader extends React.Component {
                             this.setState({ cat: 'default', seHace: true })
                             this.restosDeLaCat()
                         }}>
-                            <Image style={styles.imagen} source={Itodos} />
+                            <View style={styles.imageContainer}>
+                                <Image style={styles.imagen} source={Itodos} />
+                            </View>
                             <Text style={styles.catTxt}>ver todos</Text>
                         </TouchableOpacity>
                         {
@@ -78,7 +80,9 @@ export default class CategoriasHeader extends React.Component {
                                         this.restosDeLaCat()
                                     }}>
                                         <View style={styles.itemContainer}>
-                                            <Image style={styles.imagen} source={cat.image} />
+                                            <View style={styles.imageContainer}>
+                                                <Image style={styles.imagen} source={cat.image} />
+                                            </View>
                                             <Text style={styles.catTxt}>{cat.txt}</Text>
                                         </View>
                                     </TouchableOpacity>
@@ -106,25 +110,31 @@ const styles = StyleSheet.create({
     },
     catTxt: {
         textTransform: 'capitalize',
-        fontSize: 11,
+        fontSize: 12,
+        color: '#333',
         alignSelf: 'center'
     },
     imagen: {
-        height: 60,
-        width: 60,
+        height: 65,
+        width: 65,
         marginBottom: 6,
-        borderRadius: 15,
+        borderRadius: 100 / 2,
         alignSelf: 'center',
         overflow: 'hidden'
 
     },
-    itemContainer: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.12,
-        shadowRadius: 2.46,
+    imageContainer: {
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.8,
+                shadowRadius: 2,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
+
     }
 })

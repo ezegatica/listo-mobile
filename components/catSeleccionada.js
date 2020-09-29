@@ -8,9 +8,6 @@ export default class CatSeleccionada extends React.Component {
         restaurantes: null
     }
 
-    componentDidMount() {
-
-    }
     render() {
         if (this.props.data) {
             return (
