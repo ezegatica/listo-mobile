@@ -1,107 +1,130 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global'
 import Loading from '../screens/loading'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IFruta from '../assets/market2.jpg'
 export default class Cards extends React.Component {
 
-    render() {
-        if (this.props.data) {
+    categoriaTxt = (r) => {
+        if (r.info.cat2 == "") {
             return (
-                <View style={globalStyles.screenContainer}>
-                    <View style={styles.restosContainer}>
-                        {
-                            this.props.data.map((r, i) => {
-                                let foto = r.info.foto
-                                if (!foto) {
-                                    foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
-                                }
-                                return (
-                                    <View key={i} style={styles.cont}>
-                                        <TouchableOpacity style={styles.restoContainer}>
-                                            <ImageBackground style={styles.imagenFondo} source={{ uri: foto }}>
-                                                <View style={styles.txtContainer}>
-                                                    <Text style={styles.fotoTxt}>{r.info.nombre}</Text>
-                                                </View>
-                                            </ImageBackground>
-                                        </TouchableOpacity>
-                                    </View>
-                                )
-                            })
-                        }
-                    </View>
+                <View>
+                    <Text style={styles.categoriaTxt}>{r.info.cat}</Text>
                 </View>
             )
         }
-        else {
+        else if (r.info.cat2 != "") {
             return (
-                <View style={styles.loadingContainer}>
-                    <Loading />
+                <View>
+                    <Text style={styles.categoriaTxt}>{r.info.cat}, {r.info.cat2}</Text>
                 </View>
             )
         }
     }
+
+    render() {
+        return (
+            <View style={globalStyles.screenContainer}>
+                <View style={styles.restosContainer}>
+                    {
+                        this.props.data.map((r, i) => {
+                            let imagen = r.info.foto
+                            if (!imagen) {
+                                imagen = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
+                            }
+                            return (
+                                <TouchableOpacity key={i} style={styles.cont}>
+                                    <View style={styles.cardContainer}>
+                                        <View style={styles.fotoView}>
+                                            <Image source={{ uri: imagen }} style={styles.foto} />
+                                        </View>
+                                        <View style={styles.textsContainer}>
+                                            <Text style={styles.nombre}>{r.info.nombre}</Text>
+                                            {this.categoriaTxt(r)}
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                    <View style={styles.espacio}></View>
+                </View>
+            </View>
+        )
+    }
+
 }
 
 
 const styles = StyleSheet.create({
-    loadingContainer: {
-        width: '100%',
-        height: 700,
-        alignItems: "center",
-        justifyContent: 'center'
-    },
-    cardContainer: {
+    cont: {
         width: '100%',
         backgroundColor: '#fcfcff',
-        marginVertical: 2,
-        paddingVertical: 30,
+        marginVertical: 5,
+        paddingVertical: 10,
         borderRadius: 5,
-        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+                shadowRadius: 2,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
+    },
+    cardContainer: {
+        flexDirection: 'row',
+    },
+    fotoView: {
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+                shadowRadius: 1,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
     },
     nombreContainer: {
         marginHorizontal: 10,
 
     },
-    imagenFondo: {
-        width: 400,
-        height: 100,
+    foto: {
+        width: 90,
+        height: 90,
         marginHorizontal: 10,
-        marginVertical: 3,
-        borderRadius: 10,
+        borderRadius: 3,
         overflow: "hidden",
-    },
-    cont: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.12,
-        shadowRadius: 2.46,
     },
     restosContainer: {
         justifyContent: 'center',
-    },
-    txtContainer: {
-        backgroundColor: 'white',
         alignSelf: 'center',
-        borderRadius: 6,
-        justifyContent: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.12,
-        shadowRadius: 2.46,
+        width: '95%'
     },
-    fotoTxt: {
-        alignSelf: "center",
-        color: 'black',
-        fontWeight: '700',
-        fontSize: 17,
-        padding: 5,
+    espacio: {
+        height: 300
+    },
+    textsContainer: {
+        marginLeft: 5,
+        marginTop: 5
+    },
+    nombre: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#1b1b1b'
+    },
+    categoriaTxt: {
+        marginTop: 4,
+        fontSize: 15,
+        color: '#333',
+        textTransform: 'capitalize',
+
     }
 })

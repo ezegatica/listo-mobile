@@ -4,15 +4,32 @@ import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'rea
 import CatSeleccionada from '../components/catSeleccionada'
 import CatDefault from '../components/catDefault'
 import firebase, { db } from '../api/firebase'
+import { ThemeProvider } from '@react-navigation/native'
 //<Image source={cat.image}></Image>
 export default class CategoriasHeader extends React.Component {
     state = {
         cat: 'default',
         seHace: true,
         restosDeLaCat: null,
+        todosLosRestos: null,
     }
 
-    restosDeLaCat = () => {
+    componentDidMount() { //pongo todos los restos aca xq lo hace solo una ves
+        db.collection('restaurantes').get()
+            .then(snapshot => {
+                const Todos = []
+                let info
+                let id
+                snapshot.forEach(doc => {
+                    info = doc.data()
+                    id = doc.id;
+                    Todos.push({ info, id })
+                })
+                this.setState({ todosLosRestos: Todos })
+            })
+    }
+
+    restosDeLaCat = () => { //se hace cada vez que se cambia de categoria
         db.collection('restaurantes').get()
             .then(snapshot => {
                 const Restaurantes = []
@@ -37,7 +54,7 @@ export default class CategoriasHeader extends React.Component {
         if (this.state.seHace) {
             if (this.state.cat == 'default') {
                 return (
-                    <CatDefault data={this.props.data} />
+                    <CatDefault data={this.state.todosLosRestos} />
                 )
             }
             else if (this.state.cat != 'default') {
@@ -45,7 +62,7 @@ export default class CategoriasHeader extends React.Component {
                 //console.log('armando', restosDelaCat)
                 //console.log('-------------------------------------------------------------')
                 return (
-                    <CatSeleccionada data={restosDelaCat} style={styles.test} />
+                    <CatSeleccionada data={restosDelaCat} />
                 )
 
             }
@@ -102,7 +119,9 @@ export default class CategoriasHeader extends React.Component {
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 15,
-        backgroundColor: '#fcfcff',
+        backgroundColor: '#ffffff',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 0.7
     },
     catContainer: {
         marginHorizontal: 10,
@@ -115,18 +134,20 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     imagen: {
-        height: 65,
-        width: 65,
+        height: 63,
+        width: 63,
         marginBottom: 6,
         borderRadius: 100 / 2,
         alignSelf: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderColor: '#4fc3f7',
+        borderWidth: 0.2
 
     },
     imageContainer: {
         ...Platform.select({
             ios: {
-                shadowColor: '#000',
+                shadowColor: 'black',
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.8,
                 shadowRadius: 2,

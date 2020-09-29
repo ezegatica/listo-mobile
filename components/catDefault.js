@@ -1,16 +1,29 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import ScrollHorizontal from './scrollHorizontal'
+import Card from './card'
+import Loading from '../screens/loading'
+import { SafeAreaView } from 'react-native-safe-area-context'
 export default class CatDefault extends React.Component {
-    state = {
-        categorias: this.props.data
+
+    test = () => {
+        console.log(this.props.data)
     }
     render() {
-        return (
-            <ScrollView showsVerticalScrollIndicator={false} >
-                <ScrollHorizontal data={this.props.data}></ScrollHorizontal>
-            </ScrollView>
-        )
+        if (!this.props.data) {
+            return (
+                <Loading />
+            )
+        }
+        if (this.props.data) {
+            return (
+
+                <ScrollView showsVerticalScrollIndicator={false} >
+                    <Card data={this.props.data} />
+                </ScrollView>
+
+            )
+        }
+
     }
 }

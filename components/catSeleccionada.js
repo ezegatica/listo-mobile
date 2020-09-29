@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import Card from './card'
 import firebase, { db } from '../api/firebase'
 import Loading from '../screens/loading'
 
@@ -11,15 +12,9 @@ export default class CatSeleccionada extends React.Component {
     render() {
         if (this.props.data) {
             return (
-                <View>
-                    {
-                        this.props.data.map((resto, i) => {
-                            return (
-                                <Text key={i}>{resto.id}</Text>
-                            )
-                        })
-                    }
-                </View>
+                <ScrollView showsVerticalScrollIndicator={false} >
+                    <Card data={this.props.data} />
+                </ScrollView>
             )
         }
         else {

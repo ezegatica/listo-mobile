@@ -1,49 +1,68 @@
 import React from 'react'
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
-export default function ScrollHorizontal({ title, data, navigation }) {
+export default class ScrollHorizontal extends React.Component {
 
-    const organizarDatos = () => {
-        data.map((cat, i) => {
-
-        })
+    state = {
+        categorias: null
     }
-    return (
-        <View style={styles.container} >
-            <View style={styles.scrolContainer}>
-                <View style={styles.titleContainer}>
-                    <View style={styles.titleTxtContainer}>
-                        <Text style={styles.titleTxt}>{title}</Text>
-                    </View>
-                    <View style={styles.xxx}>
-                        <View style={styles.verMasView}>
-                            <TouchableOpacity style={styles.verMas}>
-                                <Text style={styles.verMasTxt}>ver todos</Text>
-                            </TouchableOpacity>
+
+    /*organizarDatos = () => {
+         this.props.data.map((cat, i) => {
+             let Categorias = []
+             Categorias.push(cat.txt)
+             if (Categorias) {
+                 Categorias.map((c, i) => {
+                     return (
+                         <TouchableOpacity style={styles.scrollItemContainer} key={i} onPress={}>
+                             <View style={styles.shadow}>
+                                 <Text></Text>
+                             </View>
+                         </TouchableOpacity>
+                     )
+                 })
+             }
+         })
+     }
+     /*
+     {data.map((data, i) => {
+                         organizarDatos()
+                         return (
+                             <TouchableOpacity style={styles.scrollItemContainer} key={i} onPress={}>
+                                 <View style={styles.shadow}>
+                                     <Image style={styles.scrollItem} source={data.image} />
+                                 </View>
+                             </TouchableOpacity>
+                         )
+                     })}
+     */
+    render() {
+        return (
+            <View style={styles.container} >
+                <View style={styles.scrolContainer}>
+                    <View style={styles.titleContainer}>
+                        <View style={styles.titleTxtContainer}>
+                            <Text style={styles.titleTxt}>HOLA</Text>
+                        </View>
+                        <View style={styles.xxx}>
+                            <View style={styles.verMasView}>
+                                <TouchableOpacity style={styles.verMas} onPress={() => {
+
+                                }}>
+                                    <Text style={styles.verMasTxt}>ver todos</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
+                    <ScrollView showsHorizontalScrollIndicator={false} style={styles.scroll} horizontal={true}>
+                        {
+                            this.organizarDatos()
+                        }
+                    </ScrollView>
                 </View>
-                <ScrollView showsHorizontalScrollIndicator={false} style={styles.scroll} horizontal={true}>
-                    {data.map((data, i) => {
-                        let n = i;
-                        return (
-                            <TouchableOpacity style={styles.scrollItemContainer} key={i} onPress={
-                                () => navigation.navigate('Categoria', {
-                                    num: n,
-                                    nombre: data.txt,
-                                    locales: data.locales,
-                                })
-                            }>
-                                <View style={styles.shadow}>
-                                    <Image style={styles.scrollItem} source={data.image} />
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    })}
-                </ScrollView>
             </View>
-        </View>
-    )
+        )
+    }
 }
 
 const styles = StyleSheet.create({
