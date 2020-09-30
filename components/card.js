@@ -34,7 +34,9 @@ export default function Card({ data, navigation }) {
                         }
                         return (
                             <TouchableOpacity key={i} style={styles.cont} onPress={() => {
-                                navigation.navigate('Productos')
+                                navigation.navigate('Productos', {
+                                    resto: r.id
+                                })
                             }}>
                                 <View style={styles.cardContainer}>
                                     <View style={styles.fotoView}>
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         marginHorizontal: 10,
-        borderRadius: 2,
+        borderRadius: 4,
         overflow: "hidden",
     },
     restosContainer: {

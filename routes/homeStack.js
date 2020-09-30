@@ -21,10 +21,12 @@ export const HomeStack = ({ }) => {
 
             }} component={Home} />
             <Stack.Screen name='Categoria' options={{
-                headerTitle: ''
+                headerTitle: '',
+                headerBackTitle: 'Inicio'
             }} component={Categoria} />
             <Stack.Screen name='Productos' options={{
-                headerTitle: ''
+                headerTitle: '',
+                headerBackTitle: 'Categorías'
             }} component={Productos} />
 
         </Stack.Navigator>
