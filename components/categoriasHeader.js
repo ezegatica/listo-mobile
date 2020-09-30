@@ -28,6 +28,7 @@ export default class CategoriasHeader extends React.Component {
                 })
                 this.setState({ todosLosRestos: Todos })
             })
+            .catch(err => console.log('ERROR', err))
     }
 
     restosDeLaCat = () => { //se hace cada vez que se cambia de categoria
@@ -54,7 +55,7 @@ export default class CategoriasHeader extends React.Component {
     kcat = () => {
         if (this.state.cat == 'default') {
             return (
-                <CatDefault data={this.state.todosLosRestos} />
+                <CatDefault data={this.state.todosLosRestos} navigation={this.props.navigation} />
             )
         }
         else if (this.state.cat != 'default') {
@@ -62,14 +63,9 @@ export default class CategoriasHeader extends React.Component {
             //console.log('armando', restosDelaCat)
             //console.log('-------------------------------------------------------------')
             return (
-                <CatSeleccionada data={restosDelaCat} />
+                <CatSeleccionada data={restosDelaCat} navigation={this.props.navigation} />
             )
 
-        }
-        else if (!this.state.cat) {
-            return (
-                <Loading />
-            )
         }
     }
     render() {

@@ -10,7 +10,7 @@ export default class CatSeleccionada extends React.Component {
         if (this.props.data) {
             return (
                 <ScrollView showsVerticalScrollIndicator={false} >
-                    <Card data={this.props.data} />
+                    <Card data={this.props.data} navigation={this.props.navigation} />
                 </ScrollView>
             )
         }

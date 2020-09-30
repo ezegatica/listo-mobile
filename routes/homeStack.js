@@ -2,13 +2,14 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from '../screens/home'
 import Categoria from '../screens/category'
+import Productos from '../screens/productos'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 const Stack = createStackNavigator()
 
 export const HomeStack = ({ }) => {
     return (
-        
+
         <Stack.Navigator screenOptions={{
             headerTitleAlign: 'center',
             headerTitleAllowFontScaling: true,
@@ -22,6 +23,9 @@ export const HomeStack = ({ }) => {
             <Stack.Screen name='Categoria' options={{
                 headerTitle: ''
             }} component={Categoria} />
+            <Stack.Screen name='Productos' options={{
+                headerTitle: ''
+            }} component={Productos} />
 
         </Stack.Navigator>
     )

@@ -19,7 +19,7 @@ export default class CatDefault extends React.Component {
             return (
 
                 <ScrollView showsVerticalScrollIndicator={false} >
-                    <Card data={this.props.data} />
+                    <Card data={this.props.data} navigation={this.props.navigation} />
                 </ScrollView>
 
             )

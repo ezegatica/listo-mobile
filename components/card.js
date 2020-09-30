@@ -2,11 +2,12 @@ import React from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global'
 import Loading from '../screens/loading'
+import Productos from '../screens/productos'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IFruta from '../assets/market2.jpg'
-export default class Cards extends React.Component {
+export default function Card({ data, navigation }) {
 
-    categoriaTxt = (r) => {
+    const categoriaTxt = (r) => {
         if (r.info.cat2 == "") {
             return (
                 <View>
@@ -22,38 +23,36 @@ export default class Cards extends React.Component {
             )
         }
     }
-
-    render() {
-        return (
-            <View style={globalStyles.screenContainer}>
-                <View style={styles.restosContainer}>
-                    {
-                        this.props.data.map((r, i) => {
-                            let imagen = r.info.foto
-                            if (!imagen) {
-                                imagen = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
-                            }
-                            return (
-                                <TouchableOpacity key={i} style={styles.cont}>
-                                    <View style={styles.cardContainer}>
-                                        <View style={styles.fotoView}>
-                                            <Image source={{ uri: imagen }} style={styles.foto} />
-                                        </View>
-                                        <View style={styles.textsContainer}>
-                                            <Text style={styles.nombre}>{r.info.nombre}</Text>
-                                            {this.categoriaTxt(r)}
-                                        </View>
+    return (
+        <View style={globalStyles.screenContainer}>
+            <View style={styles.restosContainer}>
+                {
+                    data.map((r, i) => {
+                        let imagen = r.info.foto
+                        if (!imagen) {
+                            imagen = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
+                        }
+                        return (
+                            <TouchableOpacity key={i} style={styles.cont} onPress={() => {
+                                navigation.navigate('Productos')
+                            }}>
+                                <View style={styles.cardContainer}>
+                                    <View style={styles.fotoView}>
+                                        <Image source={{ uri: imagen }} style={styles.foto} />
                                     </View>
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                    <View style={styles.espacio}></View>
-                </View>
+                                    <View style={styles.textsContainer}>
+                                        <Text style={styles.nombre}>{r.info.nombre}</Text>
+                                        {categoriaTxt(r)}
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        )
+                    })
+                }
+                <View style={styles.espacio}></View>
             </View>
-        )
-    }
-
+        </View>
+    )
 }
 
 

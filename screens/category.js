@@ -57,7 +57,7 @@ export default class Categoria extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <CategoriasHeader data={this.state.categorias} />
+                <CategoriasHeader data={this.state.categorias} navigation={this.props.navigation} />
             </SafeAreaView>
         );
     }
