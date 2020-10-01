@@ -15,7 +15,7 @@ export default class CatSeleccionada extends React.Component {
             )
         }
         if (!this.props.data) {
-            console.log('CARGANDO...');
+            //console.log('CARGANDO...');
             return (
                 <Loading />
             )

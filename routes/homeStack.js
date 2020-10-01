@@ -26,7 +26,7 @@ export const HomeStack = ({ }) => {
             }} component={Categoria} />
             <Stack.Screen name='Productos' options={{
                 headerTitle: '',
-                headerBackTitle: 'Categorías'
+                headerBackTitle: 'Restaurantes'
             }} component={Productos} />
 
         </Stack.Navigator>

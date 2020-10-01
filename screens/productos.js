@@ -11,6 +11,7 @@ export default class Productos extends Component {
         productos: null
     }
     componentDidMount() {
+        //console.log('PROPS: ', this.props);
         db.collection('restaurantes').doc(this.props.route.params.resto).collection('productos').get()
             .then(snapshot => {
                 const Productos = []
@@ -25,7 +26,9 @@ export default class Productos extends Component {
     render() {
         if (this.state.productos) {
             return (
-                <CardProducto data={this.state.productos} />
+                <View>
+                    <CardProducto data={this.state.productos} headerProps={this.props.route.params} />
+                </View>
             )
         }
         else if (!this.state.propductos) {

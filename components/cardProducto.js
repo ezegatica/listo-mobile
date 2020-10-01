@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import HeaderProductos from '../components/headerProductos'
+
 //Arregñar que no se muestran los 3 puntitos
 export default class CardProducto extends Component {
     render() {
 
         return (
             <View>
-                <View style={styles.prodsContainer}>
-                    <ScrollView showsVerticalScrollIndicator={false}>
+                <HeaderProductos data={this.props.headerProps} />
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.prodsContainer}>
+
                         {
                             this.props.data.map((r, i) => {
                                 let foto = r.info.foto
@@ -23,7 +27,7 @@ export default class CardProducto extends Component {
                                             </View>
                                             <View style={styles.textsContainer}>
                                                 <View>
-                                                    <Text ellipsizeMode='tail' numberOfLines={2} style={styles.nombre}>{r.info.titulo}</Text>
+                                                    <Text ellipsizeMode='tail' numberOfLines={1} style={styles.nombre}>{r.info.titulo}</Text>
                                                     <Text style={styles.descTxt}>{r.info.descripcion}</Text>
                                                 </View>
                                                 <View>
@@ -35,8 +39,9 @@ export default class CardProducto extends Component {
                                 )
                             })
                         }
-                    </ScrollView>
-                </View>
+                    </View>
+                    <View style={styles.espacio}></View>
+                </ScrollView>
             </View>
         );
     }
@@ -102,13 +107,16 @@ const styles = StyleSheet.create({
     },
     descTxt: {
         marginTop: 4,
-        fontSize: 13,
+        fontSize: 14,
         color: '#333',
     },
     precio: {
         color: 'green',
-        marginTop: 14,
+        marginTop: 20,
         fontWeight: 'bold',
         fontSize: 15
-    }
+    },
+    espacio: {
+        paddingVertical: 150
+    },
 })

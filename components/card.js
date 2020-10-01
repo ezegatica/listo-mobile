@@ -35,7 +35,11 @@ export default function Card({ data, navigation }) {
                         return (
                             <TouchableOpacity key={i} style={styles.cont} onPress={() => {
                                 navigation.navigate('Productos', {
-                                    resto: r.id
+                                    resto: r.id,
+                                    nombre: r.info.nombre,
+                                    foto: r.info.foto,
+                                    cat: r.info.cat,
+                                    cat2: r.info.cat2,
                                 })
                             }}>
                                 <View style={styles.cardContainer}>
