@@ -55,7 +55,6 @@ export default function Card({ data, navigation }) {
                         )
                     })
                 }
-                <View style={styles.espacio}></View>
             </View>
         </View>
     )
@@ -126,10 +125,11 @@ const styles = StyleSheet.create({
         color: '#1b1b1b'
     },
     categoriaTxt: {
-        marginTop: 4,
-        fontSize: 15,
-        color: '#333',
+        marginTop: 6,
+        fontSize: 16,
+        color: '#4F94CD',
         textTransform: 'capitalize',
+        fontWeight: 'bold'
 
     }
 })

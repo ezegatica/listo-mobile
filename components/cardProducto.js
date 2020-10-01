@@ -10,7 +10,7 @@ export default class CardProducto extends Component {
         return (
             <View>
                 <HeaderProductos data={this.props.headerProps} />
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.prodsContainer}>
 
                         {
@@ -40,7 +40,6 @@ export default class CardProducto extends Component {
                             })
                         }
                     </View>
-                    <View style={styles.espacio}></View>
                 </ScrollView>
             </View>
         );
@@ -48,6 +47,9 @@ export default class CardProducto extends Component {
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+        marginBottom: 189
+    },
     cont: {
         width: '100%',
         backgroundColor: '#fcfcff',

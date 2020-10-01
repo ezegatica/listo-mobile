@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     foto: {
         height: 75,
         width: 75,
-        borderRadius: 100 / 2,
+        borderRadius: 100 / 4,
     },
     titulo: {
         fontWeight: 'bold',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     categoria: {
         fontSize: 16,
-        color: '#1fc3f7',
+        color: '#4F94CD',
         textTransform: 'capitalize',
         fontWeight: 'bold'
     }

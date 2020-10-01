@@ -9,7 +9,7 @@ export default class CatSeleccionada extends React.Component {
     render() {
         if (this.props.data) {
             return (
-                <ScrollView showsVerticalScrollIndicator={false} >
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <Card data={this.props.data} navigation={this.props.navigation} />
                 </ScrollView>
             )
@@ -23,3 +23,8 @@ export default class CatSeleccionada extends React.Component {
 
     }
 }
+const styles = StyleSheet.create({
+    scroll: {
+        marginBottom: 228,
+    }
+})

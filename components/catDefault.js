@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Card from './card'
 import Loading from '../screens/loading'
-import { SafeAreaView } from 'react-native-safe-area-context'
 export default class CatDefault extends React.Component {
 
     render() {
@@ -15,7 +14,7 @@ export default class CatDefault extends React.Component {
         if (this.props.data) {
             return (
 
-                <ScrollView showsVerticalScrollIndicator={false} >
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <Card data={this.props.data} navigation={this.props.navigation} />
                 </ScrollView>
 
@@ -24,3 +23,9 @@ export default class CatDefault extends React.Component {
 
     }
 }
+const styles = StyleSheet.create({
+    scroll: {
+        marginBottom: 228,
+    }
+})
+
