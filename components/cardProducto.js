@@ -18,9 +18,17 @@ export default class CardProducto extends Component {
                                 return (
                                     <TouchableOpacity key={i} style={styles.cont}>
                                         <View style={styles.prodContainer}>
-                                            <Image source={{ uri: foto }} style={styles.foto} />
+                                            <View style={styles.fotoView}>
+                                                <Image source={{ uri: foto }} style={styles.foto} />
+                                            </View>
                                             <View style={styles.textsContainer}>
-                                                <Text ellipsizeMode='tail' numberOfLines={2} style={styles.nombre}>{r.info.titulo}</Text>
+                                                <View>
+                                                    <Text ellipsizeMode='tail' numberOfLines={2} style={styles.nombre}>{r.info.titulo}</Text>
+                                                    <Text style={styles.descTxt}>{r.info.descripcion}</Text>
+                                                </View>
+                                                <View>
+                                                    <Text style={styles.precio}>${r.info.precio}</Text>
+                                                </View>
                                             </View>
                                         </View>
                                     </TouchableOpacity>
@@ -61,17 +69,46 @@ const styles = StyleSheet.create({
     foto: {
         height: 90,
         width: 90,
+        marginHorizontal: 10,
+        borderRadius: 4,
+        overflow: "hidden",
+    },
+    fotoView: {
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+                shadowRadius: 2,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
     },
     prodContainer: {
         flexDirection: 'row'
     },
     nombre: {
         fontWeight: 'bold',
-        fontSize: 16,
-        color: '#1b1b1b'
+        fontSize: 15,
+        color: '#1b1b1b',
     },
     textsContainer: {
         marginLeft: 5,
-        marginTop: 5
+        marginTop: 5,
+        flexDirection: 'column',
+        alignItems: 'flex-start'
     },
+    descTxt: {
+        marginTop: 4,
+        fontSize: 13,
+        color: '#333',
+    },
+    precio: {
+        color: 'green',
+        marginTop: 14,
+        fontWeight: 'bold',
+        fontSize: 15
+    }
 })

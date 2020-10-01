@@ -6,9 +6,6 @@ import Loading from '../screens/loading'
 import { SafeAreaView } from 'react-native-safe-area-context'
 export default class CatDefault extends React.Component {
 
-    test = () => {
-        console.log(this.props.data)
-    }
     render() {
         if (!this.props.data) {
             return (
