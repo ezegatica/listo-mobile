@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
     },
     cont: {
         width: '100%',
-        backgroundColor: '#fcfcff',
+        backgroundColor: '#F8F8F8',
         marginVertical: 5,
         paddingVertical: 10,
-        borderRadius: 5,
+        borderRadius: 10,
         ...Platform.select({
             ios: {
                 shadowColor: '#000',
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         height: 90,
         width: 90,
         marginHorizontal: 10,
-        borderRadius: 4,
+        borderRadius: 100 / 10,
         overflow: "hidden",
     },
     fotoView: {

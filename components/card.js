@@ -46,6 +46,7 @@ export default function Card({ data, navigation }) {
                                     <View style={styles.fotoView}>
                                         <Image source={{ uri: imagen }} style={styles.foto} />
                                     </View>
+                                    <View style={styles.linea}></View>
                                     <View style={styles.textsContainer}>
                                         <Text style={styles.nombre}>{r.info.nombre}</Text>
                                         {categoriaTxt(r)}
@@ -64,10 +65,10 @@ export default function Card({ data, navigation }) {
 const styles = StyleSheet.create({
     cont: {
         width: '100%',
-        backgroundColor: '#fcfcff',
+        backgroundColor: '#f8f8f8',
         marginVertical: 5,
         paddingVertical: 10,
-        borderRadius: 5,
+        borderRadius: 10,
         ...Platform.select({
             ios: {
                 shadowColor: '#000',
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         marginHorizontal: 10,
-        borderRadius: 4,
+        borderRadius: 100 / 10,
         overflow: "hidden",
     },
     restosContainer: {
@@ -131,5 +132,13 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize',
         fontWeight: 'bold'
 
-    }
+    },
+    linea: {
+        paddingHorizontal: 4,
+        borderLeftColor: '#4fc3f7',
+        borderLeftWidth: 5,
+        height: '90%',
+        alignSelf: "center",
+        marginLeft: 10
+    },
 })
