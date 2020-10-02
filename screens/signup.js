@@ -4,7 +4,7 @@ import { globalStyles } from '../styles/global'
 export default function Signup() {
     return (
         <View style={globalStyles.screenContainer}>
-            <Text style={globalStyles.titleTxt}>sign up</Text>
+            <Text style={globalStyles.titleTxt}>sign p</Text>
         </View>
     );
 }
