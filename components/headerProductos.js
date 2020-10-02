@@ -3,6 +3,18 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 export default class HeaderProductos extends Component {
 
+    imagen = () => {
+        let foto
+        if (this.props.data.foto != undefined) {
+            foto = this.props.data.foto
+            return foto
+        }
+        else {
+            foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
+            return foto
+
+        }
+    }
     cat = () => {
         if (this.props.data.cat2 != '') {
             return (<Text style={styles.categoria} >{this.props.data.cat}, {this.props.data.cat2}</Text>)
@@ -15,7 +27,7 @@ export default class HeaderProductos extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.fotoView}>
-                    <Image style={styles.foto} source={{ uri: this.props.data.foto }} />
+                    <Image style={styles.foto} source={{ uri: this.imagen() }} />
                 </View>
                 <View style={styles.linea}></View>
                 <View style={styles.test}>
