@@ -22,6 +22,8 @@ export default class Producto extends Component {
             <View style={styles.screenContainer}>
                 <View style={styles.prodContainer}>
                     <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
+                    <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
+                    <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
                     {this.foto()}
                 </View>
             </View>
@@ -35,11 +37,11 @@ const styles = StyleSheet.create({
     },
     prodContainer: {
         backgroundColor: '#f1f1f1',
-        marginTop: 40,
+        marginTop: 10,
         width: '91%',
         alignSelf: 'center',
         borderRadius: 15,
-        padding: 20,
+        padding: 10,
         ...Platform.select({
             ios: {
                 shadowColor: '#000',
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     titulo: {
         alignSelf: 'center',
         fontSize: 25,
-        marginVertical: 15,
+        marginTop: 5,
         fontWeight: 'bold'
     },
     fotoContainer: {
@@ -77,7 +79,19 @@ const styles = StyleSheet.create({
             },
         }),
     },
-    fotoContCont: {
+    descripcion: {
+        fontSize: 18,
+        color: '#4F94CD',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        marginVertical: 10,
 
+    },
+    precio: {
+        color: 'green',
+        fontWeight: 'bold',
+        fontSize: 17,
+        marginBottom: 20,
+        alignSelf: 'center'
     }
 })

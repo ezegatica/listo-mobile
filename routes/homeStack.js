@@ -4,7 +4,8 @@ import Home from '../screens/home'
 import Categoria from '../screens/category'
 import Productos from '../screens/productos'
 import Producto from '../screens/producto'
-import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import BtnCarrito from '../components/btnCarrito'
+import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
 
 const Stack = createStackNavigator()
 
@@ -19,7 +20,8 @@ export const HomeStack = ({ }) => {
             headerTitleStyle: { color: '#333', fontWeight: '700' },
             cardStyle: {
                 backgroundColor: '#fff'
-            }
+            },
+            headerRight: () => (<BtnCarrito />)
         }} >
             <Stack.Screen name='Inicio' options={{
 
