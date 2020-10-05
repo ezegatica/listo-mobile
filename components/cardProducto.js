@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     cont: {
         width: '100%',
-        backgroundColor: '#F8F8F8',
+        backgroundColor: '#f1f1f1',
         marginVertical: 5,
         paddingVertical: 10,
         borderRadius: 10,
