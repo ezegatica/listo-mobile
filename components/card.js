@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     nombre: {
         fontWeight: 'bold',
         fontSize: 16,
-        color: '#1b1b1b'
+        color: '#000'
     },
     categoriaTxt: {
         marginTop: 6,

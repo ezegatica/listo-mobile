@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     nombre: {
         fontWeight: 'bold',
         fontSize: 15,
-        color: '#1b1b1b',
+        color: '#000',
     },
     textsContainer: {
         marginLeft: 5,
