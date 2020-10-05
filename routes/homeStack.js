@@ -5,11 +5,12 @@ import Categoria from '../screens/category'
 import Productos from '../screens/productos'
 import Producto from '../screens/producto'
 import BtnCarrito from '../components/btnCarrito'
+import Carrito from '../screens/carrito'
 import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
 
 const Stack = createStackNavigator()
 
-export const HomeStack = ({ }) => {
+export const HomeStack = ({ navigation }) => {
     return (
 
         <Stack.Navigator screenOptions={{
@@ -17,11 +18,11 @@ export const HomeStack = ({ }) => {
             headerTitleAllowFontScaling: true,
             headerBackAllowFontScaling: true,
             headerShown: 'float',
-            headerTitleStyle: { color: '#333', fontWeight: '700' },
+            headerTitleStyle: { color: '#000', fontWeight: '600' },
             cardStyle: {
                 backgroundColor: '#fff'
             },
-            headerRight: () => (<BtnCarrito />)
+            headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >
             <Stack.Screen name='Inicio' options={{
 
@@ -38,6 +39,10 @@ export const HomeStack = ({ }) => {
                 headerTitle: '',
                 headerBackTitle: 'Productos',
             }} component={Producto} />
+            <Stack.Screen name='Carrito' options={{
+                headerTitle: '',
+                headerBackTitle: 'Atras',
+            }} component={Carrito} />
         </Stack.Navigator>
     )
 }
