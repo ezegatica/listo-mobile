@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Home from '../screens/home'
 import Categoria from '../screens/category'
 import Productos from '../screens/productos'
+import Producto from '../screens/producto'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 const Stack = createStackNavigator()
@@ -19,7 +20,6 @@ export const HomeStack = ({ }) => {
             cardStyle: {
                 backgroundColor: '#fff'
             }
-
         }} >
             <Stack.Screen name='Inicio' options={{
 
@@ -32,7 +32,10 @@ export const HomeStack = ({ }) => {
                 headerTitle: '',
                 headerBackTitle: 'Restaurantes'
             }} component={Productos} />
-
+            <Stack.Screen name='Producto' options={{
+                headerTitle: '',
+                headerBackTitle: 'Productos',
+            }} component={Producto} />
         </Stack.Navigator>
     )
 }

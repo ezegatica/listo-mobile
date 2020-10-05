@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     catTxt: {
         textTransform: 'capitalize',
         fontSize: 12,
-        color: '#333',
+        color: 'gray',
         alignSelf: 'center'
     },
     imagen: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
             ios: {
                 shadowColor: 'black',
                 shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.8,
+                shadowOpacity: 0.3,
                 shadowRadius: 2,
             },
             android: {

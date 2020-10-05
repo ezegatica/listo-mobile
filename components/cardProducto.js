@@ -20,7 +20,11 @@ export default class CardProducto extends Component {
                                     foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
                                 }
                                 return (
-                                    <TouchableOpacity key={i} style={styles.cont}>
+                                    <TouchableOpacity key={i} style={styles.cont} onPress={() => {
+                                        this.props.navigation.navigate('Producto', {
+                                            data: r.info
+                                        })
+                                    }}>
                                         <View style={styles.prodContainer}>
                                             <View style={styles.fotoView}>
                                                 <Image source={{ uri: foto }} style={styles.foto} />
@@ -28,7 +32,6 @@ export default class CardProducto extends Component {
                                             <View style={styles.textsContainer}>
                                                 <View>
                                                     <Text ellipsizeMode='tail' numberOfLines={1} style={styles.nombre}>{r.info.titulo}</Text>
-                                                    <Text style={styles.descTxt}>{r.info.descripcion}</Text>
                                                 </View>
                                                 <View>
                                                     <Text style={styles.precio}>${r.info.precio}</Text>
@@ -105,18 +108,13 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginTop: 5,
         flexDirection: 'column',
-        alignItems: 'flex-start'
-    },
-    descTxt: {
-        marginTop: 4,
-        fontSize: 14,
-        color: '#333',
+        alignItems: 'flex-start',
+        justifyContent: 'space-around'
     },
     precio: {
         color: 'green',
-        marginTop: 20,
         fontWeight: 'bold',
-        fontSize: 15
+        fontSize: 15,
     },
     espacio: {
         paddingVertical: 150

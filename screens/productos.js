@@ -27,7 +27,7 @@ export default class Productos extends Component {
         if (this.state.productos) {
             return (
                 <View>
-                    <CardProducto data={this.state.productos} headerProps={this.props.route.params} />
+                    <CardProducto data={this.state.productos} headerProps={this.props.route.params} navigation={this.props.navigation} />
                 </View>
             )
         }
