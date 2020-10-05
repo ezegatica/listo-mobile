@@ -130,12 +130,11 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         marginBottom: 6,
-        borderRadius: 100 / 2,
+        borderRadius: 100 / 4,
         alignSelf: 'center',
         overflow: 'hidden',
         borderColor: '#4fc3f7',
-        borderWidth: 0.2
-
+        borderWidth: 0.2,
     },
     imageContainer: {
         ...Platform.select({

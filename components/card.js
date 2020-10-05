@@ -65,7 +65,7 @@ export default function Card({ data, navigation }) {
 const styles = StyleSheet.create({
     cont: {
         width: '100%',
-        backgroundColor: '#f8f8f8',
+        backgroundColor: '#f1f1f1',
         marginVertical: 5,
         paddingVertical: 10,
         borderRadius: 10,
