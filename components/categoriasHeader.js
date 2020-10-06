@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     catTxt: {
         textTransform: 'capitalize',
-        fontSize: 12,
+        fontSize: 10,
         color: 'gray',
         alignSelf: 'center'
     },

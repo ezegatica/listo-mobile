@@ -8,7 +8,7 @@ export default class BtnCarrito extends Component {
     render() {
         return (
             <View>
-                <TouchableOpacity onPress={() => {
+                <TouchableOpacity style={styles.cont} onPress={() => {
                     this.props.navigation.navigate('Carrito')
                 }}>
                     <Image source={Icarrito} style={styles.foto} />
@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
     foto: {
         height: 30,
         width: 30,
-        padding: 5,
-        marginRight: 20
+    },
+    cont: {
+        marginRight: 10,
+        padding: 6,
     }
 })
