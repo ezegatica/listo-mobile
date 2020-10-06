@@ -18,7 +18,7 @@ export const HomeStack = ({ navigation }) => {
             headerTitleAllowFontScaling: true,
             headerBackAllowFontScaling: true,
             headerShown: 'float',
-            headerTitleStyle: { color: '#000', fontWeight: '600' },
+            headerTitleStyle: { color: '#000', fontWeight: '500' },
             cardStyle: {
                 backgroundColor: '#fff'
             },

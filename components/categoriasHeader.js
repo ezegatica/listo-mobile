@@ -31,7 +31,9 @@ export default class CategoriasHeader extends React.Component {
             .catch(err => console.log('ERROR', err))
     }
 
-    restosDeLaCat = () => { //se hace cada vez que se cambia de categoria
+    restosDeLaCat = () => {
+        //se hace cada vez que se cambia de categoria
+        this.setState({ restosDeLaCat: null })
         db.collection('restaurantes').get()
             .then(snapshot => {
                 const Restaurantes = []

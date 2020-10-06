@@ -10,7 +10,7 @@ YellowBox.ignoreWarnings(['Setting a timer']);
 export const Routes = ({ }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null) // se deberia cambiar desde otro archivo
-    
+
     React.useEffect(() => {
         setTimeout(() => {
             setLoading(false)
