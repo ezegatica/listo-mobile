@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start'
     },
     linea: {
-        paddingHorizontal: 10,
-        borderLeftColor: '#4fc3f7',
-        borderLeftWidth: 7,
+        backgroundColor: '#4fc3f7',
+        marginHorizontal: 15,
+        padding: 3,
         height: '80%',
-        alignSelf: "center",
-        marginLeft: 20
+        alignSelf: 'center',
+        borderRadius: 5
     },
     categoria: {
         fontSize: 16,

@@ -48,6 +48,7 @@ export default function Card({ data, navigation }) {
                                         <View style={styles.fotoView}>
                                             <Image source={{ uri: imagen }} style={styles.foto} />
                                         </View>
+                                        <View style={styles.linea}></View>
                                         <View style={styles.textsContainer}>
                                             <Text style={styles.nombre}>{r.info.nombre}</Text>
                                             {categoriaTxt(r)}
@@ -117,7 +118,15 @@ const styles = StyleSheet.create({
         color: '#4F94CD',
         textTransform: 'capitalize',
         fontWeight: 'bold'
-
     },
+    linea: {
+        backgroundColor: '#4fc3f7',
+        marginLeft: 4,
+        marginRight: 6,
+        padding: 3,
+        height: '95%',
+        alignSelf: 'center',
+        borderRadius: 5
+    }
 
 })

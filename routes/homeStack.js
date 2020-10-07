@@ -20,7 +20,7 @@ export const HomeStack = ({ navigation }) => {
             headerShown: 'float',
             headerTitleStyle: { color: '#000', fontWeight: '500' },
             cardStyle: {
-                backgroundColor: '#f9f9f9'
+                backgroundColor: '#fff'
             },
             headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >
