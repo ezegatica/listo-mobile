@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image, ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import HeaderProductos from '../components/headerProductos'
+import Ibg from '../assets/Card.png'
+
 
 //Arregñar que no se muestran los 3 puntitos
 export default class CardProducto extends Component {
@@ -20,25 +22,27 @@ export default class CardProducto extends Component {
                                     foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
                                 }
                                 return (
-                                    <TouchableOpacity key={i} style={styles.cont} onPress={() => {
-                                        this.props.navigation.navigate('Producto', {
-                                            data: r.info
-                                        })
-                                    }}>
-                                        <View style={styles.prodContainer}>
-                                            <View style={styles.fotoView}>
-                                                <Image source={{ uri: foto }} style={styles.foto} />
-                                            </View>
-                                            <View style={styles.textsContainer}>
-                                                <View>
-                                                    <Text ellipsizeMode='tail' numberOfLines={1} style={styles.nombre}>{r.info.titulo}</Text>
+                                    <ImageBackground key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
+                                        <TouchableOpacity onPress={() => {
+                                            this.props.navigation.navigate('Producto', {
+                                                data: r.info
+                                            })
+                                        }}>
+                                            <View style={styles.prodContainer}>
+                                                <View style={styles.fotoView}>
+                                                    <Image source={{ uri: foto }} style={styles.foto} />
                                                 </View>
-                                                <View>
-                                                    <Text style={styles.precio}>${r.info.precio}</Text>
+                                                <View style={styles.textsContainer}>
+                                                    <View>
+                                                        <Text ellipsizeMode='tail' numberOfLines={1} style={styles.nombre}>{r.info.titulo}</Text>
+                                                    </View>
+                                                    <View>
+                                                        <Text style={styles.precio}>${r.info.precio}</Text>
+                                                    </View>
                                                 </View>
                                             </View>
-                                        </View>
-                                    </TouchableOpacity>
+                                        </TouchableOpacity>
+                                    </ImageBackground>
                                 )
                             })
                         }
@@ -55,21 +59,8 @@ const styles = StyleSheet.create({
     },
     cont: {
         width: '100%',
-        backgroundColor: '#f1f1f1',
-        marginVertical: 5,
+        marginVertical: 3,
         paddingVertical: 10,
-        borderRadius: 10,
-        ...Platform.select({
-            ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.2,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 1,
-            },
-        }),
     },
     prodsContainer: {
         justifyContent: 'center',

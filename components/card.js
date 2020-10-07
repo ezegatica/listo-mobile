@@ -3,6 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global'
 import Loading from '../screens/loading'
 import Productos from '../screens/productos'
+import Ibg from '../assets/Card.png'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IFruta from '../assets/market2.jpg'
 export default function Card({ data, navigation }) {
@@ -33,26 +34,27 @@ export default function Card({ data, navigation }) {
                             imagen = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
                         }
                         return (
-                            <TouchableOpacity key={i} style={styles.cont} onPress={() => {
-                                navigation.navigate('Productos', {
-                                    resto: r.id,
-                                    nombre: r.info.nombre,
-                                    foto: r.info.foto,
-                                    cat: r.info.cat,
-                                    cat2: r.info.cat2,
-                                })
-                            }}>
-                                <View style={styles.cardContainer}>
-                                    <View style={styles.fotoView}>
-                                        <Image source={{ uri: imagen }} style={styles.foto} />
+                            <ImageBackground key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
+                                <TouchableOpacity onPress={() => {
+                                    navigation.navigate('Productos', {
+                                        resto: r.id,
+                                        nombre: r.info.nombre,
+                                        foto: r.info.foto,
+                                        cat: r.info.cat,
+                                        cat2: r.info.cat2,
+                                    })
+                                }}>
+                                    <View style={styles.cardContainer}>
+                                        <View style={styles.fotoView}>
+                                            <Image source={{ uri: imagen }} style={styles.foto} />
+                                        </View>
+                                        <View style={styles.textsContainer}>
+                                            <Text style={styles.nombre}>{r.info.nombre}</Text>
+                                            {categoriaTxt(r)}
+                                        </View>
                                     </View>
-                                    <View style={styles.linea}></View>
-                                    <View style={styles.textsContainer}>
-                                        <Text style={styles.nombre}>{r.info.nombre}</Text>
-                                        {categoriaTxt(r)}
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            </ImageBackground>
                         )
                     })
                 }
@@ -65,21 +67,8 @@ export default function Card({ data, navigation }) {
 const styles = StyleSheet.create({
     cont: {
         width: '100%',
-        backgroundColor: '#f1f1f1',
-        marginVertical: 5,
+        marginVertical: 3,
         paddingVertical: 10,
-        borderRadius: 10,
-        ...Platform.select({
-            ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.2,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 1,
-            },
-        }),
     },
     cardContainer: {
         flexDirection: 'row',
@@ -113,9 +102,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '95%'
     },
-    espacio: {
-        height: 300
-    },
     textsContainer: {
         marginLeft: 5,
         marginTop: 5
@@ -133,12 +119,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
 
     },
-    linea: {
-        paddingHorizontal: 4,
-        borderLeftColor: '#4fc3f7',
-        borderLeftWidth: 5,
-        height: '90%',
-        alignSelf: "center",
-        marginLeft: 10
-    },
+
 })
