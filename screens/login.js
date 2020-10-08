@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView } from 'react-native';
 import { globalStyles } from '../styles/global'
 import BGprueba from '../assets/fondoPrueba.jpg'
-import { AuthContext, AuthProvider } from '../api/auth';
 
 export function Login({ navigation }) {
     const [mail, setMail] = useState();
     const [pass, setPass] = useState();
-    const { user, login, logout } = useContext(AuthContext) //NO ANDA
     return (
         <View style={globalStyles.screenContainer}>
             <ImageBackground source={BGprueba} style={globalStyles.bg}>
@@ -29,7 +27,7 @@ export function Login({ navigation }) {
                         onChangeText={(password) => setPass(password)}
                     />
                     <View>
-                        <TouchableOpacity style={globalStyles.btnAzul} onPress={() => { login() }}>
+                        <TouchableOpacity style={globalStyles.btnAzul}>
                             <Text style={globalStyles.btnTxt}>Aceptar</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={globalStyles.btnAzul} onPress={() => navigation.navigate('Start')}>
