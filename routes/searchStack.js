@@ -4,6 +4,7 @@ import Test from '../screens/search'
 import BtnCarrito from '../components/btnCarrito'
 import Signup from '../screens/signup'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { Login } from '../screens/login'
 
 const Stack = createStackNavigator()
 
@@ -20,7 +21,7 @@ export const SearchStack = ({ navigation }) => {
             headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >
             <Stack.Screen name='Buscador' options={{
-            }} component={Signup} />
+            }} component={Login} />
         </Stack.Navigator>
     )
 }

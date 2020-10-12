@@ -25,9 +25,9 @@ export default function Signup() {
                         apellido: apellido,
                         initials: nombre[0] + apellido[0],
                     }).then(console.log("Si."))
-                    }
-                )
                 }
+            )
+        }
     }
 
     return (
