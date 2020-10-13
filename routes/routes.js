@@ -5,6 +5,7 @@ import Loading from '../screens/loading'
 import { AppTabs } from './tabs';
 import { StackAuth } from './authStack'
 import { YellowBox } from 'react-native';
+import { auth } from '../api/firebase'
 
 YellowBox.ignoreWarnings(['Setting a timer']);
 export const Routes = ({ }) => {
@@ -18,8 +19,17 @@ export const Routes = ({ }) => {
 
     React.useEffect(() => {
         setTimeout(() => {
-            setLoading(false)
-            setUser(true)
+            auth.onAuthStateChanged(user => {
+                //console.log(user);
+                if (user) {
+                    setUser(true)
+                    setLoading(false)
+                }
+                else {
+                    setUser(false)
+                    setLoading(false)
+                }
+            })
         }, 2000)
     })
     if (loading) {

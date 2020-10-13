@@ -11,7 +11,7 @@ export default function FloatList({ navigation, data }) {
                     {
                         data.map((data, i) => {
                             let n = i;
-                            if (n >= 4) {
+                            if (n < 4) {
                                 return (
                                     <TouchableOpacity style={styles.itemContainer} key={i} onPress={
                                         () => navigation.navigate('Categoria')
