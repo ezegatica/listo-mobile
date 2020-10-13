@@ -11,7 +11,6 @@ YellowBox.ignoreWarnings(['Setting a timer']);
 export const Routes = ({ }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null) // se deberia cambiar desde otro archivo
-
     /*Codigo para routear al screen que corrresponde  
     firebase.auth().onAuthStateChanged(user => {
         this.props.navigation.navigate(user ? 'Main' : 'SignUp')
@@ -20,8 +19,9 @@ export const Routes = ({ }) => {
     React.useEffect(() => {
         setTimeout(() => {
             auth.onAuthStateChanged(user => {
-                //console.log(user);
+
                 if (user) {
+                    //console.log('USUARIO', user.uid);
                     setUser(true)
                     setLoading(false)
                 }

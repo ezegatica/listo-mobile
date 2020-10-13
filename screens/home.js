@@ -15,11 +15,11 @@ export default function Home({ navigation }) {
             txt: 'Restaurantes'
         },
         {
-            imagen: IComida,
+            imagen: IFruta,
             txt: 'buenas buenas'
         },
         {
-            imagen: IComida,
+            imagen: ILibreria,
             txt: 'buenas buenas'
         },
         {
