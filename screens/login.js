@@ -14,7 +14,7 @@ export function Login({ navigation }) {
     //firebase
     auth
       .signInWithEmailAndPassword(mail, pass)
-      .then(() => console.log("exito", mail, pass))//navigation.navigate('Inicio'))
+      //navigation.navigate('Inicio'))
       .catch(function (error) {
         // Handle Errors here.
         errorMessage = error.message;

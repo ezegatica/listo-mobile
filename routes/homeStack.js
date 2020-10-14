@@ -11,6 +11,7 @@ import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
 const Stack = createStackNavigator()
 
 export const HomeStack = ({ navigation }) => {
+
     return (
 
         <Stack.Navigator screenOptions={{

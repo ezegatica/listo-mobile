@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Test from '../screens/search'
 import { SearchStack } from './searchStack'
 import { AntDesign } from '@expo/vector-icons'
 import { HomeStack } from './homeStack'
@@ -17,6 +16,7 @@ export const AppTabs = ({ }) => {
                 if (route.name === 'Inicio') {
                     iconName = 'home'
                     return <AntDesign name={iconName} size={25} color={color} />;
+
                 } else if (route.name === 'Buscar') {
                     iconName = 'search1'
                     return <AntDesign name={iconName} size={25} color={color} />;
@@ -24,6 +24,7 @@ export const AppTabs = ({ }) => {
                 else if (route.name === 'Perfil') {
                     iconName = 'user'
                     return <AntDesign name={iconName} size={25} color={color} />;
+
                 }
             },
             title: () => { },
