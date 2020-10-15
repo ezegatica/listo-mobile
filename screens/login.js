@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
 import BGprueba from '../assets/fondoPrueba.jpg'
+import Global from '../global';
 
 export function Login({ navigation }) {
   const [mail, setMail] = useState("");
@@ -20,6 +21,7 @@ export function Login({ navigation }) {
         errorMessage = error.message;
       }
       )
+    //console.log(Global);
   }
 
   return (

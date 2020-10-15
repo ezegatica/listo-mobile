@@ -16,18 +16,18 @@ export const Routes = ({ }) => {
     firebase.auth().onAuthStateChanged(user => {
         this.props.navigation.navigate(user ? 'Main' : 'SignUp')
     })*/
-
     React.useEffect(() => {
         setTimeout(() => {
             auth.onAuthStateChanged(user => {
                 if (user) {
-                    //console.log('USUARIO', user.uid);
                     setUser(true)
                     setLoading(false)
+                    global.UserUid = user.uid
                 }
                 else {
                     setUser(false)
                     setLoading(false)
+                    global.UserUid = 'No hay nada'
                 }
             })
         }, 2000)
