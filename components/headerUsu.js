@@ -5,7 +5,13 @@ import { auth } from '../api/firebase'
 export default function HeaderUser() {
 
     const hayUsu = () => {
-        return (<Text>{global.UserName}</Text>)
+        if (global.UserUid != 'No hay nada') {
+            //console.log('hay uid');
+            return (<Text>{global.UserUid}</Text>)
+        }
+        else {
+            return (<Text>No hay ndad</Text>)
+        }
     }
 
     return (
