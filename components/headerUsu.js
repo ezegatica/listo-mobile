@@ -5,12 +5,11 @@ import { auth } from '../api/firebase'
 export default function HeaderUser() {
 
     const hayUsu = () => {
-        if (global.UserUid != 'No hay nada') {
-            //console.log('hay uid');
+        if (global.UserUid) {
             return (<Text>{global.UserUid}</Text>)
         }
         else {
-            return (<Text>No hay ndad</Text>)
+            return (<Text>No hay usuario Registrado</Text>)
         }
     }
 

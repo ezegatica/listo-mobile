@@ -23,7 +23,6 @@ export const Routes = ({ }) => {
                 else {
                     setUser(false)
                     setLoading(false)
-                    global.UserUid = 'No hay nada'
                 }
             })
         }, 2000)
