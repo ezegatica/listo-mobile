@@ -14,7 +14,7 @@ export default function Profile() {
         <View style={globalStyles.screenContainer}>
             <Text style={globalStyles.titleTxt}>Perfil</Text>
             <TouchableOpacity onPress={() => { logOut() }}>
-                <Text>Cerrar seciion</Text>
+                <Text>Cerrar sesión</Text>
             </TouchableOpacity>
         </View>
     );

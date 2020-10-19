@@ -4,7 +4,6 @@ import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
 import BGprueba from '../assets/fondoPrueba.jpg'
-import Global from '../global';
 
 export function Login({ navigation }) {
   const [mail, setMail] = useState("");
@@ -13,18 +12,13 @@ export function Login({ navigation }) {
 
   const Entrar = () => {
     //firebase
-    auth
-      .signInWithEmailAndPassword(mail, pass)
-      //navigation.navigate('Inicio'))
+    auth.signInWithEmailAndPassword(mail, pass)
       .catch(function (error) {
-        // Handle Errors here.
         Alert.alert(
           "Error",
           error.message,
         );
-      }
-      )
-    //console.log(Global);
+      })
   }
 
   return (
@@ -89,7 +83,4 @@ const styles = StyleSheet.create({
   inputCont: {
     marginTop: 200
   },
-  aceptar: {
-    color: 'red'
-  }
 })
