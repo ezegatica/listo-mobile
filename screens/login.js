@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Button, Text, View, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { StyleSheet, Button, Text, View, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, SafeAreaView, Alert } from 'react-native';
 import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
@@ -18,7 +18,10 @@ export function Login({ navigation }) {
       //navigation.navigate('Inicio'))
       .catch(function (error) {
         // Handle Errors here.
-        errorMessage = error.message;
+        Alert.alert(
+          "Error",
+          error.message,
+        );
       }
       )
     //console.log(Global);
@@ -28,9 +31,8 @@ export function Login({ navigation }) {
     <ImageBackground source={BGprueba} style={globalStyles.bg}>
       <SafeAreaView>
         <View style={styles.container}>
-          <Text style={styles.titulo}>Inisiar Sesión</Text>
+          <Text style={styles.titulo}>Iniciar Sesión</Text>
           <View style={styles.inputCont}>
-            <Text>{errorMessage}</Text>
             <TextInput
               style={styles.input}
               autoCapitalize="none"
@@ -46,7 +48,7 @@ export function Login({ navigation }) {
             />
             <Button title="Aceptar" onPress={Entrar} />
             <Button
-              title="¿Todabía no tenés una cuenta? Registrate"
+              title="¿Todavía no tenés una cuenta? Registrate"
               onPress={() => navigation.navigate('Signup')}
             />
           </View>

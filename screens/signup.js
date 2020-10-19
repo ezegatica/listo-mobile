@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
@@ -16,15 +16,21 @@ export default function Signup() {
       auth.createUserWithEmailAndPassword(
         email,
         password
-      ).then((resp) => {
-        //console.log("UID: ", resp.user.uid)
-        //console.log("CREADO?")
-        //console.log("Mail: ", email)                    
+      ).then((resp) => {                
         db.collection("testeos").doc(resp.user.uid).set({
           nombre: nombre,
           apellido: apellido,
           initials: nombre[0] + apellido[0],
         }).then(console.log("Si."))
+        
+        }
+        )
+        .catch(function (error) {
+          // Handle Errors here.
+          Alert.alert(
+            "Error",
+            error.message,
+          );
       }
       )
     }
