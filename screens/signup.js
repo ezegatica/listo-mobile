@@ -17,7 +17,7 @@ export default function Signup() {
         email,
         password
       ).then((resp) => {                
-        db.collection("testeos").doc(resp.user.uid).set({
+        db.collection("usuarios").doc(resp.user.uid).set({
           nombre: nombre,
           apellido: apellido,
           initials: nombre[0] + apellido[0],
