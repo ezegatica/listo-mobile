@@ -29,8 +29,8 @@ export function Login({ navigation }) {
 
   return (
     <ImageBackground source={BGprueba} style={globalStyles.bg}>
-      <SafeAreaView>
-        <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <View>
           <Text style={styles.titulo}>Iniciar Sesión</Text>
           <View style={styles.inputCont}>
             <TextInput
@@ -54,7 +54,7 @@ export function Login({ navigation }) {
           </View>
         </View>
       </SafeAreaView>
-    </ImageBackground>
+    </ImageBackground >
   );
 }
 
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     fontSize: 15,
     marginVertical: 20,
-    width: '100%',
+    width: '90%',
     alignSelf: 'center'
   },
   btns: {
@@ -88,5 +88,8 @@ const styles = StyleSheet.create({
   },
   inputCont: {
     marginTop: 200
+  },
+  aceptar: {
+    color: 'red'
   }
 })
