@@ -6,7 +6,9 @@ export default function HeaderUser() {
 
     const hayUsu = () => {
         if (global.UserUid) {
-            return (<Text>{global.UserUid}</Text>)
+            return (
+                <Text>{global.UserUid}</Text>
+            )
         }
         else {
             return (<Text>No hay usuario Registrado</Text>)

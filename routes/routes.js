@@ -5,12 +5,12 @@ import Loading from '../screens/loading'
 import { AppTabs } from './tabs';
 import { StackAuth } from './authStack'
 import { YellowBox } from 'react-native';
-import { auth } from '../api/firebase'
+import { auth, db } from '../api/firebase'
 
 YellowBox.ignoreWarnings(['Setting a timer']);
 export const Routes = ({ }) => {
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(false)
 
     React.useEffect(() => {
         setTimeout(() => {

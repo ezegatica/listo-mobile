@@ -7,7 +7,7 @@ export default function Profile() {
     const logOut = () => {
         auth.signOut()
             .then(() => {
-                console.log('pito o algo asi');
+                //console.log('pito o algo asi');
             })
     }
     return (
