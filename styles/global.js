@@ -19,7 +19,7 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
     },
     btnAzul: {
-        backgroundColor: 'rgba(70,70,235,.9)',
+        backgroundColor: 'rgba(70,70,235,1)',
         padding: 0,
         borderRadius: 10,
         padding: 13,

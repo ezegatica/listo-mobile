@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Button, Text, View, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Button, Text, View, TouchableOpacity, ImageBackground, TextInput, SafeAreaView, Alert } from 'react-native';
 import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
@@ -22,7 +22,7 @@ export function Login({ navigation }) {
   }
 
   return (
-    <ImageBackground source={BGprueba} style={globalStyles.bg}>
+    <ImageBackground source={BGprueba} style={styles.bg} resizeMode='cover'>
       <SafeAreaView style={styles.container}>
         <View>
           <Text style={styles.titulo}>Iniciar Sesión</Text>
@@ -40,11 +40,12 @@ export function Login({ navigation }) {
               placeholder="Password"
               onChangeText={password => setPass(password)}
             />
-            <Button title="Aceptar" onPress={Entrar} />
-            <Button
-              title="¿Todavía no tenés una cuenta? Registrate"
-              onPress={() => navigation.navigate('Signup')}
-            />
+            <TouchableOpacity onPress={Entrar} style={styles.btnView}>
+              <Text style={styles.btnText}>Aceptar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+              <Text style={styles.txt}>¿Todavía no tenés una cuenta? {<Text style={{ fontWeight: 'bold' }}>Registrate</Text>}</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
@@ -53,8 +54,10 @@ export function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bg: {
+    width: '100%'
+  },
   titulo: {
-    marginTop: 50,
     alignSelf: 'center',
     fontSize: 30,
     fontWeight: 'bold'
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 45,
-    backgroundColor: 'rgba(255,255,255,.5)',
+    backgroundColor: 'rgba(255,255,255,.8)',
     paddingLeft: 10,
     borderRadius: 20,
     fontSize: 15,
@@ -78,9 +81,27 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
   },
   inputCont: {
-    marginTop: 200
+    marginTop: 100
+  },
+  btnView: {
+    margin: 10,
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: '#007AFF',
+    borderRadius: 10,
+    width: '30%',
+  },
+  btnText: {
+    alignSelf: 'center',
+    fontSize: 18,
+    color: 'white'
+  },
+  txt: {
+    color: '#fff',
+    fontSize: 18,
+    alignSelf: 'center'
   },
 })

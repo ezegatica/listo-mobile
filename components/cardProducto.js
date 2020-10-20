@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     },
     precio: {
         color: 'green',
-        fontWeight: 'bold',
         fontSize: 15,
     },
     espacio: {

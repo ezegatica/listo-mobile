@@ -5,7 +5,8 @@ import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
 import BGprueba from '../assets/fondoPrueba.jpg'
-export default function Signup() {
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fetching, setFetching] = useState(false)
@@ -38,7 +39,7 @@ export default function Signup() {
   }
 
   return (
-    <ImageBackground source={BGprueba} style={globalStyles.bg}>
+    <ImageBackground source={BGprueba} style={styles.bg}>
       <SafeAreaView style={styles.container}>
         <Text style={styles.titulo}>Registrarse</Text>
         <View style={styles.inputCont}>
@@ -72,7 +73,12 @@ export default function Signup() {
 
               setApellido(text)
             }} />
-          <Button title="Aceptar" onPress={Registrar} />
+          <TouchableOpacity onPress={Registrar} style={styles.btnView}>
+            <Text style={styles.btnText}>Aceptar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.txt}>¿Ya tenés una cuenta? {<Text style={{ fontWeight: 'bold' }}>Iniciar sesión</Text>}</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -80,8 +86,10 @@ export default function Signup() {
 }
 
 const styles = StyleSheet.create({
+  bg: {
+    width: '100%'
+  },
   titulo: {
-    marginTop: 50,
     alignSelf: 'center',
     fontSize: 30,
     fontWeight: 'bold'
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 45,
-    backgroundColor: 'rgba(255,255,255,.5)',
+    backgroundColor: 'rgba(255,255,255,.8)',
     paddingLeft: 10,
     borderRadius: 20,
     fontSize: 15,
@@ -99,15 +107,30 @@ const styles = StyleSheet.create({
   },
   btns: {
     flex: 2,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   container: {
     width: '100%',
     height: '100%',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
   },
-  inputCont: {
-    marginTop: 100
-  }
+  btnView: {
+    margin: 10,
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: '#007AFF',
+    borderRadius: 10,
+    width: '30%',
+  },
+  btnText: {
+    alignSelf: 'center',
+    fontSize: 18,
+    color: 'white'
+  },
+  txt: {
+    color: '#fff',
+    fontSize: 18,
+    alignSelf: 'center'
+  },
 })
