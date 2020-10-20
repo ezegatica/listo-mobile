@@ -16,9 +16,9 @@ export const Routes = ({ }) => {
         setTimeout(() => {
             auth.onAuthStateChanged(user => {
                 if (user) {
+                    global.UserUid = user.uid
                     setUser(true)
                     setLoading(false)
-                    global.UserUid = user.uid
                 }
                 else {
                     setUser(false)
@@ -27,13 +27,13 @@ export const Routes = ({ }) => {
             })
         }, 2000)
     })
-    if (loading) {
-        return <Loading />
-    }
-    else if (user) {
+    if (user && !loading) {
         return <NavigationContainer><AppTabs /></NavigationContainer>
     }
-    else {
+    else if (!user && !loading) {
         return <NavigationContainer><StackAuth /></NavigationContainer>
+    }
+    else {
+        return <Loading />
     }
 }
