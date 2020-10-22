@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class Producto extends Component {
 
@@ -21,6 +21,11 @@ export default class Producto extends Component {
         return (
             <View style={styles.screenContainer}>
                 <View style={styles.prodContainer}>
+                    <TouchableOpacity style={styles.titulo} onPress={() => {
+
+                    }}>
+                        <Text>Agregar al carrito</Text>
+                    </TouchableOpacity>
                     <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
                     <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
                     <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
