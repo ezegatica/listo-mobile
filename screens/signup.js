@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, SafeAreaView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, Alert, SafeAreaView, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
@@ -41,7 +41,9 @@ export default function Signup({ navigation }) {
   return (
     <ImageBackground source={BGprueba} style={styles.bg}>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.titulo}>Registrarse</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titulo}>Registrarse</Text>
+        </View>
         <View style={styles.inputCont}>
           <TextInput
             label={"Email"}
@@ -63,14 +65,12 @@ export default function Signup({ navigation }) {
             placeholder="Nombre"
             style={styles.input}
             onChangeText={text => {
-
               setNombre(text)
             }} />
           <TextInput label={"Apellido"}
             placeholder="Apellido"
             style={styles.input}
             onChangeText={text => {
-
               setApellido(text)
             }} />
           <TouchableOpacity onPress={Registrar} style={styles.btnView}>
@@ -92,8 +92,7 @@ const styles = StyleSheet.create({
   titulo: {
     alignSelf: 'center',
     fontSize: 30,
-    fontWeight: 'bold'
-
+    fontWeight: 'bold',
   },
   input: {
     height: 45,
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '30%',
   },
+
   btnText: {
     alignSelf: 'center',
     fontSize: 18,
