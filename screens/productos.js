@@ -8,7 +8,7 @@ import CardProducto from '../components/cardProducto'
 export default class Productos extends Component {
 
     state = {
-        productos: null
+        productos: null,
     }
     componentDidMount() {
         //console.log('PROPS: ', this.props);
@@ -21,6 +21,7 @@ export default class Productos extends Component {
                     Productos.push({ info, id })
                 })
                 this.setState({ productos: Productos })
+                //console.log('ID....', Productos.id);
             }).catch(error => console.log(error))
     }
     render() {

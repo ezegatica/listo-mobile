@@ -5,10 +5,6 @@ import store from './redux/store'
 import { AppRegistry } from 'react-native'
 export default function App() {
     return (
-        <Provider store={store()}>
-            <Routes />
-        </Provider>
+        <Routes />
     )
 }
-
-AppRegistry.registerComponent(App())

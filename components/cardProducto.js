@@ -25,7 +25,8 @@ export default class CardProducto extends Component {
                                     <ImageBackground key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
                                         <TouchableOpacity onPress={() => {
                                             this.props.navigation.navigate('Producto', {
-                                                data: r.info
+                                                data: r.info,
+                                                uid: r.id,
                                             })
                                         }}>
                                             <View style={styles.prodContainer}>

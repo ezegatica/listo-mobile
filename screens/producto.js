@@ -1,9 +1,100 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import firebase, { db } from '../api/firebase'
+import Loading from '../screens/loading'
+export default class Producto extends React.Component {
+    state = {
+        carrito: null,
+        cargando: false,
+    }
+    componentWillUnmount() {
+        this.setState({ carrito: null })
+    }
+    componentDidMount() {
+        this.getResto()
+    }
+    agregarAlCarrito = () => {
+        const resto = this.props.route.params.data.autorUUID
+        const producto = this.props.route.params.uid
 
-export default class Producto extends Component {
+        //console.log('UID...', uid);
+        db.collection('usuarios').doc(global.UserUid).update({
+            'cart': firebase.firestore.FieldValue.arrayUnion({
+                restaurante: resto,
+                producto: producto,
+                cantidad: '1',
+            })
+        })
+            .then(() => {
+                Alert.alert(
+                    'Producto agregado!',
+                    'Se pueden especificar los detalles y la cantidad del producto en el carrito'
+                )
+            })
+            .catch((err) => {
+                console.log('ERROR: ', err);
+                alert('ups:(', 'Error al agregar carrito')
 
+            })
+    }
+    getResto = () => {
+        db.collection('usuarios').doc(global.UserUid).get()
+            .then(snapshot => {
+                //console.log(snapshot.data().cart)
+                this.setState({ carrito: snapshot.data().cart })
+            })
+            .catch((err) => {
+                console.log('ERROR: ', err);
+            })
+        this.setState({ cargando: false })
+    }
+    chek = () => {
+        let esIgual
+        this.state.carrito.map((item, i) => {
+            if (item.producto == this.props.route.params.uid) {
+                esIgual = true
+            }
+            else {
+                esIgual = false
+            }
+        })
+        if (this.state.carrito.length >= 0 && this.state.carrito[0].restaurante != this.props.route.params.data.autorUUID) {
+            Alert.alert(
+                'Ups:(',
+                'Parece que ya tenés productos de otro local en el carrito, ¿Desea limpiar el carrito para agregar este?',
+                [
+                    {
+                        text: "Cancelar",
+                        style: "cancel"
+                    },
+                    {
+                        text: "Ok",
+                        onPress: () => this.clearCarrito(),
+                        style: "Ok"
+                    }
+                ],
+            )
+        }
+        else if (esIgual) {
+            Alert.alert(
+                'Ups:(',
+                'Parece que ya tenés este producto en tu carrito, le podes cambiar la cantidad en el carrito'
+            )
+        }
+        else {
+            this.agregarAlCarrito()
+        }
+
+    }
+    clearCarrito = () => {
+        db.collection('usuarios').doc(global.UserUid).update({
+            "cart": firebase.firestore.FieldValue.delete()
+        }).then(() => {
+            this.agregarAlCarrito()
+        }).catch((err) => { console.log(err); })
+    }
     foto = () => {
+        //console.log(this.props.route.params.data);
         let foto = this.props.route.params.data.foto
         if (foto != undefined) {
         }
@@ -18,21 +109,26 @@ export default class Producto extends Component {
         )
     }
     render() {
-        return (
-            <View style={styles.screenContainer}>
-                <View style={styles.prodContainer}>
-                    <TouchableOpacity style={styles.titulo} onPress={() => {
-
-                    }}>
-                        <Text>Agregar al carrito</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
-                    <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
-                    <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
-                    {this.foto()}
+        if (!this.state.cargando) {
+            return (
+                <View style={styles.screenContainer}>
+                    <View style={styles.prodContainer}>
+                        <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
+                        <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
+                        <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
+                        {this.foto()}
+                        <TouchableOpacity style={styles.btn} onPress={() => {
+                            this.chek()
+                        }}>
+                            <Text style={styles.btnTxt}>Agregar al carrito</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        );
+            )
+        }
+        else {
+            return <Loading />
+        }
     }
 }
 
@@ -85,18 +181,29 @@ const styles = StyleSheet.create({
         }),
     },
     descripcion: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#4F94CD',
-        fontWeight: 'bold',
         alignSelf: 'center',
         marginVertical: 10,
 
     },
     precio: {
         color: 'green',
-        fontWeight: 'bold',
         fontSize: 17,
         marginBottom: 20,
         alignSelf: 'center'
+    },
+    btn: {
+        alignSelf: 'center',
+        backgroundColor: '#007AFF',
+        padding: 10,
+        borderRadius: 10,
+        margin: 20
+    },
+    btnTxt: {
+        alignItems: 'center',
+        color: '#fff',
+        fontSize: 17,
+        fontWeight: 'bold'
     }
 })
