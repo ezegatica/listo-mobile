@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global'
 import Loading from '../screens/loading'
@@ -6,8 +6,9 @@ import Productos from '../screens/productos'
 import Ibg from '../assets/Card.png'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IFruta from '../assets/market2.jpg'
-export default function Card({ data, navigation }) {
+import { set } from 'react-native-reanimated';
 
+export default function Card({ data, navigation }) {
     const categoriaTxt = (r) => {
         if (r.info.cat2 == "") {
             return (

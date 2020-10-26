@@ -43,6 +43,7 @@ export const HomeStack = ({ navigation }) => {
             <Stack.Screen name='Carrito' options={{
                 headerTitle: '',
                 headerBackTitle: 'Atras',
+                headerRight: null
             }} component={Carrito} />
         </Stack.Navigator>
     )

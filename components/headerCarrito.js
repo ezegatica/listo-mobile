@@ -137,6 +137,7 @@ export default class HeaderCarrito extends Component {
                     </View>
                     <View style={styles.linea}></View>
                     {
+                        //ACA VA LAS COSAS DE LOS PRODUCTOS DEL CARRITO FANGO
                         this.state.infoProductos.map((prod, i) => {
                             return (
                                 <View key={i}>

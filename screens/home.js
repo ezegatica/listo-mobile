@@ -6,6 +6,7 @@ import IComida from '../assets/food.jpg'
 import ILibreria from '../assets/library.jpg'
 import IFruta from '../assets/market2.jpg'
 import FloatList from '../components/floatList'
+import Favs from '../components/favs'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 export default function Home({ navigation }) {
 
@@ -17,30 +18,6 @@ export default function Home({ navigation }) {
         {
             imagen: IFruta,
             txt: 'buenas buenas'
-        },
-        {
-            imagen: ILibreria,
-            txt: 'buenas buenas'
-        },
-        {
-            imagen: IComida,
-            txt: 'Restaurantes'
-        },
-        {
-            imagen: IComida,
-            txt: 'Restaurantes'
-        },
-        {
-            imagen: IFruta,
-            txt: 'buenas buenas'
-        },
-        {
-            imagen: ILibreria,
-            txt: 'buenas buenas'
-        },
-        {
-            imagen: IFruta,
-            txt: 'Buenas buenas'
         },
     ]
     const uid = () => {
@@ -55,7 +32,7 @@ export default function Home({ navigation }) {
                 <View style={globalStyles.screenContainer}>
                     <HeaderUser />
                     <FloatList navigation={navigation} data={datos} />
-                    <Text>{uid()}</Text>
+                    <Favs />
                 </View>
             </ScrollView>
         </SafeAreaView>

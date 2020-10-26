@@ -6,6 +6,7 @@ export default class Producto extends React.Component {
     state = {
         carrito: null,
         cargando: false,
+        agregado: false,
     }
     componentWillUnmount() {
         this.setState({ carrito: null })
@@ -29,6 +30,7 @@ export default class Producto extends React.Component {
                     'Producto agregado!',
                     'Se pueden especificar los detalles y la cantidad del producto en el carrito'
                 )
+                this.setState({ agregado: true })
             })
             .catch((err) => {
                 console.log('ERROR: ', err);
@@ -77,7 +79,8 @@ export default class Producto extends React.Component {
                 ],
             )
         }
-        else if (esIgual == true) {
+        else if (esIgual || this.state.agregado) {
+            //console.log('es igual');
             Alert.alert(
                 'Ups:(',
                 'Parece que ya tenés este producto en tu carrito, le podes cambiar la cantidad en el carrito'
