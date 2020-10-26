@@ -53,6 +53,7 @@ export default class Producto extends React.Component {
         this.state.carrito.map((item, i) => {
             if (item.producto == this.props.route.params.uid) {
                 esIgual = true
+                //console.log(esIgual);
             }
             else {
                 esIgual = false
@@ -75,7 +76,7 @@ export default class Producto extends React.Component {
                 ],
             )
         }
-        else if (esIgual) {
+        else if (esIgual == true) {
             Alert.alert(
                 'Ups:(',
                 'Parece que ya tenés este producto en tu carrito, le podes cambiar la cantidad en el carrito'

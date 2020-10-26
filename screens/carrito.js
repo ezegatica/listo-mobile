@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { db } from '../api/firebase'
 import Loading from '../screens/loading'
+import ProdCarrito from '../components/prodCarrito'
 
 export default class Carrito extends Component {
     state = {
@@ -39,10 +40,13 @@ export default class Carrito extends Component {
             })
     }
     getInfoProductos = () => {
+        let i = []
         this.state.carrito.forEach(element => {
             db.collection('restaurantes').doc(this.state.resto).collection('productos').doc(element.producto).get()
                 .then(snapshot => {
-                    this.setState({ infoProductos: snapshot.data() })
+                    i.push(snapshot.data())
+                    //console.log('ESTO ES I', i);
+                    this.setState({ infoProductos: i })
                 })
                 .catch(err => {
                     console.log(err);
@@ -52,10 +56,9 @@ export default class Carrito extends Component {
     }
     render() {
         if (this.state.infoProductos) {
-            //console.log('XD', productos);
             return (
                 <View>
-
+                    <ProdCarrito data={this.state.infoProductos} />
                 </View>
             )
         }
