@@ -16,7 +16,6 @@ export default class Producto extends React.Component {
     agregarAlCarrito = () => {
         const resto = this.props.route.params.data.autorUUID
         const producto = this.props.route.params.uid
-
         //console.log('UID...', uid);
         db.collection('usuarios').doc(global.UserUid).update({
             'cart': firebase.firestore.FieldValue.arrayUnion({
@@ -50,16 +49,18 @@ export default class Producto extends React.Component {
     }
     chek = () => {
         let esIgual
-        this.state.carrito.map((item, i) => {
-            if (item.producto == this.props.route.params.uid) {
-                esIgual = true
-                //console.log(esIgual);
-            }
-            else {
-                esIgual = false
-            }
-        })
-        if (this.state.carrito.length >= 0 && this.state.carrito[0].restaurante != this.props.route.params.data.autorUUID) {
+        if (this.state.carrito) {
+            this.state.carrito.map((item, i) => {
+                if (item.producto == this.props.route.params.uid) {
+                    esIgual = true
+                    //console.log(esIgual);
+                }
+                else {
+                    esIgual = false
+                }
+            })
+        }
+        if (this.state.carrito && this.state.carrito.length >= 0 && this.state.carrito[0].restaurante != this.props.route.params.data.autorUUID) {
             Alert.alert(
                 'Ups:(',
                 'Parece que ya tenés productos de otro local en el carrito, ¿Desea limpiar el carrito para agregar este?',

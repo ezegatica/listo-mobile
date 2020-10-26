@@ -9,7 +9,9 @@ export default class BtnCarrito extends Component {
         return (
             <View>
                 <TouchableOpacity style={styles.cont} onPress={() => {
-                    this.props.navigation.navigate('Carrito')
+                    this.props.navigation.navigate('Carrito', {
+                        n: this.props.navigation
+                    })
                     //console.log(this.state.apretado);
                 }}>
                     <Image source={Icarrito} style={styles.foto} />
