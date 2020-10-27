@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase, { db } from '../api/firebase'
@@ -88,13 +88,11 @@ export default class HeaderCarrito extends Component {
         if (this.state.borrado) {
             color = 'black'
             return (
-                <TouchableOpacity disabled={true}>
-                    <AntDesign name={iconName} size={25} color={color} />
-                </TouchableOpacity>
+                <ActivityIndicator size='small' />
             )
         }
         else {
-            color = 'blue'
+            color = '#007AFF'
             return (
                 <TouchableOpacity onPress={() => {
                     this.setState({ cargando: false })
