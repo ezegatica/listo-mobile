@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { db } from '../api/firebase'
 import Loading from '../screens/loading'
-import HeaderCarrito from '../components/headerCarrito'
+import HeaderCarrito from '../components/screenCarrito'
 
 export default class Carrito extends Component {
 

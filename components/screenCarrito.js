@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase, { db } from '../api/firebase'
 import Loading from '../screens/loading'
-
+import ProductosCarrito from './productosCarrito'
 export default class HeaderCarrito extends Component {
     state = {
         borrado: true,
@@ -27,7 +27,7 @@ export default class HeaderCarrito extends Component {
             })
             .then(() => {
                 if (this.state.carrito) {
-                    console.log('hay carrito');
+                    //console.log('hay carrito');
                     this.setState({ borrado: false, cargando: false })
                 }
                 else {
@@ -136,17 +136,7 @@ export default class HeaderCarrito extends Component {
                         </View>
                     </View>
                     <View style={styles.linea}></View>
-                    {
-                        //ACA VA LAS COSAS DE LOS PRODUCTOS DEL CARRITO FANGO
-                        this.state.infoProductos.map((prod, i) => {
-                            return (
-                                <View key={i}>
-                                    <Text>{prod.titulo}</Text>
-                                    <Text>{prod.precio}</Text>
-                                </View>
-                            )
-                        })
-                    }
+                    <ProductosCarrito data={this.state.infoProductos} />
                 </View>
             );
         }
