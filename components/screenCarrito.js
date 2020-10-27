@@ -76,7 +76,7 @@ export default class HeaderCarrito extends Component {
             for (let i = 0; i < precios.length; i++) {
                 precioFinal += parseFloat(precios[i])
             }
-            return (<Text style={styles.precio}>${precioFinal}</Text>)
+            return (<Text style={styles.precio}>Método de pago: Efectivo</Text>)
         }
         else {
             return (<Text style={styles.precio}>no hay productos cargados en el carrito</Text>)

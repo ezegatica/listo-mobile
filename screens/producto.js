@@ -9,7 +9,8 @@ export default class Producto extends React.Component {
         agregado: false,
     }
     componentWillUnmount() {
-        this.setState({ carrito: null })
+        this.setState({ carrito: null, agregado: false })
+        //console.log('SE DESMONTA');
     }
     componentDidMount() {
         this.getResto()
