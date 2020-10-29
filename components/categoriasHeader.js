@@ -113,7 +113,7 @@ export default class CategoriasHeader extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 15,
+        paddingVertical: 7,
         backgroundColor: '#ffffff',
         borderBottomColor: '#ccc',
         borderBottomWidth: 0.7

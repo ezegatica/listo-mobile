@@ -15,9 +15,14 @@ export default class HeaderCarrito extends Component {
         infoProductos: null,
         cargando: true,
         detalles: '',
+        p: 0,
     }
     componentDidMount() {
         this.getCarrito()
+    }
+    getPrecioTotal = (cant, precio) => {
+        this.setState({ p: cant * precio })
+        console.log(this.state.p);
     }
     getCarrito() {
         db.collection('usuarios').doc(global.UserUid).get()
@@ -138,8 +143,7 @@ export default class HeaderCarrito extends Component {
                         {
                             this.state.infoProductos.map((producto, i) => {
                                 return (
-
-                                    <ProductosCarrito key={i} data={producto} />
+                                    <ProductosCarrito key={i} data={producto} precioTotal={this.getPrecioTotal} />
                                 )
                             })
                         }
@@ -152,6 +156,9 @@ export default class HeaderCarrito extends Component {
                             onChangeText={(t) => this.setState({ detalles: t })}>
                         </TextInput>
                     </ScrollView>
+                    <TouchableOpacity style={styles.btn} onPress={() => { this.getPrecioTotal() }}>
+                        <Text style={styles.btnTxt}>¡Pedir!</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }
@@ -241,5 +248,13 @@ const styles = StyleSheet.create({
     },
     scroll: {
         paddingTop: 10
+    },
+    btn: {
+        margin: 10,
+        alignSelf: 'center',
+        padding: 10,
+        backgroundColor: '#007AFF',
+        borderRadius: 10,
+        width: '30%',
     }
 })

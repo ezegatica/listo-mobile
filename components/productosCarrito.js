@@ -7,8 +7,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 export default class ProductosCarrito extends Component {
     state = {
-        cantProducto: 1,
+        cantProducto: null,
         precio: null,
+        cantTxt: null,
+        apretado: false
+    }
+    componentDidMount() {
+        this.setState({ cantProducto: 1, apretado: true })
+    }
+    componentDidUpdate() {
+        if (this.state.apretado == true) {
+            this.setState({ apretado: false })
+        }
     }
     hayFoto = (f) => {
         let foto = f
@@ -35,8 +45,19 @@ export default class ProductosCarrito extends Component {
             return false
         }
     }
-    precio = (cant) => {
-        return this.state.cantProducto * this.props.data.precio
+    pasarPrecio = (a) => {
+        if (a == 'menos') {
+            this.setState({ cantProducto: this.state.cantProducto - 1, apretado: true })
+        }
+        else {
+            this.setState({ cantProducto: this.state.cantProducto + 1, apretado: true })
+        }
+    }
+    txtCnat = () => {
+        if (this.state.apretado) {
+            this.props.precioTotal(this.state.cantProducto, this.props.data.precio)
+        }
+        return this.state.cantProducto
     }
     masYmenos = () => {
         let colorMas
@@ -58,18 +79,18 @@ export default class ProductosCarrito extends Component {
                 <TouchableOpacity
                     style={styles.iconCont}
                     disabled={this.puedeRestar()}
-                    onPress={() => this.setState({ cantProducto: this.state.cantProducto - 1 })}>
+                    onPress={() => this.pasarPrecio('menos')}>
                     <AntDesign name='minuscircleo' size={23} color={colorMenos} />
                 </TouchableOpacity>
-                <Text style={styles.cant}>{this.state.cantProducto}</Text>
+                <Text style={styles.cant}>{this.txtCnat()}</Text>
                 <TouchableOpacity
                     style={styles.iconCont}
                     disabled={this.puedeSumar()}
-                    onPress={() => this.setState({ cantProducto: this.state.cantProducto + 1 })}>
+                    onPress={() => this.pasarPrecio('mas')}>
                     <AntDesign name='pluscircleo' size={23} color={colorMas} />
                 </TouchableOpacity>
                 <View style={styles.precioCont}>
-                    <Text style={styles.precio}>${this.precio(this.state.cantProducto)}</Text>
+                    <Text style={styles.precio}>${this.state.cantProducto * this.props.data.precio}</Text>
                 </View>
             </View >
         )
