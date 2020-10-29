@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase, { db } from '../api/firebase'
 import Loading from '../screens/loading'
 import ProductosCarrito from './productosCarrito'
+import { TextInput } from 'react-native-paper';
 export default class HeaderCarrito extends Component {
     state = {
         borrado: true,
@@ -12,7 +13,8 @@ export default class HeaderCarrito extends Component {
         resto: null,
         infoResto: null,
         infoProductos: null,
-        cargando: true
+        cargando: true,
+        detalles: '',
     }
     componentDidMount() {
         this.getCarrito()
@@ -27,7 +29,6 @@ export default class HeaderCarrito extends Component {
             })
             .then(() => {
                 if (this.state.carrito) {
-                    //console.log('hay carrito');
                     this.setState({ borrado: false, cargando: false })
                 }
                 else {
@@ -35,7 +36,6 @@ export default class HeaderCarrito extends Component {
                 }
             })
             .catch(err => {
-                //console.log('ERROR..', err)
                 this.setState({ cargando: false })
             })
     }
@@ -92,7 +92,7 @@ export default class HeaderCarrito extends Component {
             )
         }
         else {
-            color = '#007AFF'
+            color = 'red'
             return (
                 <TouchableOpacity onPress={() => {
                     this.setState({ cargando: false })
@@ -134,7 +134,24 @@ export default class HeaderCarrito extends Component {
                         </View>
                     </View>
                     <View style={styles.linea}></View>
-                    <ProductosCarrito data={this.state.infoProductos} />
+                    <ScrollView style={styles.scroll}>
+                        {
+                            this.state.infoProductos.map((producto, i) => {
+                                return (
+
+                                    <ProductosCarrito key={i} data={producto} />
+                                )
+                            })
+                        }
+                        <TextInput
+                            placeholder='Detalles del pedido (opcional)'
+                            style={styles.input}
+                            mode='flat'
+                            selectionColor='#007AFF'
+                            multiline={true}
+                            onChangeText={(t) => this.setState({ detalles: t })}>
+                        </TextInput>
+                    </ScrollView>
                 </View>
             );
         }
@@ -161,21 +178,19 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     tituloV: {
-        marginVertical: 5,
+        marginVertical: 3,
         marginLeft: 10,
     },
     titulo: {
         alignSelf: 'flex-start',
         fontSize: 25,
-
         fontWeight: 'bold'
     },
     linea: {
         width: '100%',
         backgroundColor: '#4fc3f7',
-        height: 7,
+        height: 5,
         borderRadius: 10,
-        marginBottom: 10
     },
     headerCont: {
         flexDirection: 'row',
@@ -213,5 +228,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold'
+    },
+    input: {
+        height: 45,
+        backgroundColor: 'rgba(255,255,255,.9)',
+        paddingLeft: 10,
+        fontSize: 15,
+        paddingVertical: 5,
+        marginVertical: 20,
+        width: '90%',
+        alignSelf: 'center'
+    },
+    scroll: {
+        paddingTop: 10
     }
 })

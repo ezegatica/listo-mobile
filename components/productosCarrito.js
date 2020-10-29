@@ -4,9 +4,11 @@ import bg from '../assets/Card.png'
 import { AntDesign } from '@expo/vector-icons'
 import I from '../assets/carrito.png'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 export default class ProductosCarrito extends Component {
     state = {
-        cantProducto: 1
+        cantProducto: 1,
+        precio: null,
     }
     hayFoto = (f) => {
         let foto = f
@@ -17,44 +19,77 @@ export default class ProductosCarrito extends Component {
             <Image style={styles.imagen} source={{ uri: foto }} />
         )
     }
+    puedeRestar = () => {
+        if (this.state.cantProducto <= 1) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    puedeSumar = () => {
+        if (this.state.cantProducto >= 9) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    precio = (cant) => {
+        return this.state.cantProducto * this.props.data.precio
+    }
     masYmenos = () => {
-        let cant = 1
-        let color = '#007AFF'
-
+        let colorMas
+        let colorMenos
+        if (this.puedeRestar()) {
+            colorMas = '#007AFF'
+            colorMenos = '#696969'
+        }
+        else if (this.puedeSumar()) {
+            colorMas = '#696969'
+            colorMenos = '#007AFF'
+        }
+        else {
+            colorMas = '#007AFF'
+            colorMenos = '#007AFF'
+        }
         return (
             <View style={styles.row}>
-                <TouchableOpacity style={styles.iconCont} onPress={() => this.setState({ cantProducto: this.state.cantProducto - 1 })}>
-                    <AntDesign name='minuscircleo' size={23} color={color} />
+                <TouchableOpacity
+                    style={styles.iconCont}
+                    disabled={this.puedeRestar()}
+                    onPress={() => this.setState({ cantProducto: this.state.cantProducto - 1 })}>
+                    <AntDesign name='minuscircleo' size={23} color={colorMenos} />
                 </TouchableOpacity>
                 <Text style={styles.cant}>{this.state.cantProducto}</Text>
-                <TouchableOpacity style={styles.iconCont} onPress={() => this.setState({ cantProducto: this.state.cantProducto + 1 })}>
-                    <AntDesign name='pluscircleo' size={23} color={color} />
+                <TouchableOpacity
+                    style={styles.iconCont}
+                    disabled={this.puedeSumar()}
+                    onPress={() => this.setState({ cantProducto: this.state.cantProducto + 1 })}>
+                    <AntDesign name='pluscircleo' size={23} color={colorMas} />
                 </TouchableOpacity>
+                <View style={styles.precioCont}>
+                    <Text style={styles.precio}>${this.precio(this.state.cantProducto)}</Text>
+                </View>
             </View >
         )
     }
     render() {
-        // console.log(this.props.data);
+        //console.log(this.props.detalles);
         return (
             <View style={styles.screenContainer}>
                 <View style={styles.restosCont}>
-                    {
-                        this.props.data.map((producto, i) => {
-                            return (
-                                <ImageBackground source={bg} resizeMode='stretch' style={styles.cardContainer} key={i}>
-                                    <View style={styles.row}>
-                                        <View>
-                                            {this.hayFoto(producto.foto)}
-                                        </View>
-                                        <View style={styles.column}>
-                                            <Text style={styles.titulo}>{producto.titulo}</Text>
-                                            {this.masYmenos()}
-                                        </View>
-                                    </View>
-                                </ImageBackground>
-                            )
-                        })
-                    }
+                    <ImageBackground source={bg} resizeMode='stretch' style={styles.cardContainer}>
+                        <View style={styles.row}>
+                            <View>
+                                {this.hayFoto(this.props.data.foto)}
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.titulo}>{this.props.data.titulo}</Text>
+                                {this.masYmenos()}
+                            </View>
+                        </View>
+                    </ImageBackground>
                 </View>
             </View>
         );
@@ -102,5 +137,28 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    precioCont: {
+        alignSelf: 'center',
+        marginLeft: 5,
+        padding: 5,
+        paddingHorizontal: 6,
+        backgroundColor: 'white',
+        borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.15,
+        shadowRadius: 3.46,
+
+        elevation: 1,
+    },
+    precio: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        color: '#007AFF',
+        fontSize: 14
     }
 })
