@@ -48,14 +48,13 @@ export default class Favs extends Component {
             )
         }
         console.log(this.state.favsInfo)
+        //ESTA LINEA NO FUNCIONA NO ENTIENDOOOOOOOOOOOOOOOOOOO
         if(this.state.favsInfo.length >0){
-            this.state.favsInfo.forEach(i => {
-                return(
+            return(
                     <View>
-                        <Text>{i.nombre}</Text>
+                        <Text>{this.state.favsInfo[0].nombre}</Text>
                     </View>
                 )
-            })
         }
         return <ActivityIndicator style={this.styles.act} size='large'>
         </ActivityIndicator>
