@@ -41,23 +41,27 @@ export default class Favs extends Component {
     }
 
     render() {
+        var arrayNombres = []
+        this.state.favsInfo.forEach(i =>{
+            arrayNombres.push(i.nombre," ")
+        })
+
+
         if(this.state.loading == true){
             return(
             <ActivityIndicator style={this.styles.act} size='large'>
             </ActivityIndicator>
             )
         }
-        console.log(this.state.favsInfo)
         //ESTA LINEA NO FUNCIONA NO ENTIENDOOOOOOOOOOOOOOOOOOO
-        if(this.state.favsInfo.length >0){
+        else{
             return(
                     <View>
-                        <Text>{this.state.favsInfo[0].nombre}</Text>
+                        <Text>{arrayNombres}</Text>
                     </View>
                 )
         }
-        return <ActivityIndicator style={this.styles.act} size='large'>
-        </ActivityIndicator>
+        
         
        
     }
