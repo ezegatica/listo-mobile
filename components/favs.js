@@ -1,40 +1,70 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import firebase, { db } from '../api/firebase'
 
 export default class Favs extends Component {
 
     state = {
-        favsInfo: null,
-        favs: null
+        favsInfo: [],
+        loading: true
     }
-    /*componentDidMount() {
-        let Favs = []
+    componentDidMount = () => {
+        var Favs = []
+        var a = []
         db.collection('usuarios').doc(global.UserUid).get()
             .then(snapshot => {
-                Favs = snapshot.data().favoritos
-                //console.log(favs);
-                this.setState({ favs: Favs })
-            })
-            .then(() => {
-                this.getRestoInfo()
+                snapshot.data().favoritos.forEach(element => {
+                    Favs.push(element)
+                })
+                Favs.forEach(elemento => {
+                    db.collection("restaurantes").doc(elemento).get()
+                    .then(snapshot => {
+                        a.push(snapshot.data())
+                    })
+                    .then(() => {
+                        this.setState({favsInfo:a});
+                        this.setState({loading:false})
+                    }) 
+                });
             })
     }
-    getRestoInfo = () => {
-        a = []
-        this.state.favs.forEach(element => {
-            db.collection('restaurantes').doc(element).get()
-            then(snapshot => {
-                a.push(snapshot.data())
-            })
-        })
-        console.log(a);
-    }*/
-    render() {
-        return (
+
+    tarjeta = (name,categoria) => {
+        return(
             <View>
-                <Text> Tus favoritos </Text>
+                <Text>{name}</Text>
+                <Text>{categoria}</Text>
             </View>
-        );
+            
+        )
     }
+
+    render() {
+        if(this.state.loading == true){
+            return(
+            <ActivityIndicator style={this.styles.act} size='large'>
+            </ActivityIndicator>
+            )
+        }
+        console.log(this.state.favsInfo)
+        if(this.state.favsInfo.length >0){
+            this.state.favsInfo.forEach(i => {
+                return(
+                    <View>
+                        <Text>{i.nombre}</Text>
+                    </View>
+                )
+            })
+        }
+        return <ActivityIndicator style={this.styles.act} size='large'>
+        </ActivityIndicator>
+        
+       
+    }
+    styles = StyleSheet.create({
+        act: {
+            alignSelf: 'center'
+        },
+    })
 }

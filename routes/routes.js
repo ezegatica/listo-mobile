@@ -7,7 +7,7 @@ import { StackAuth } from './authStack'
 import { YellowBox } from 'react-native';
 import { auth, db } from '../api/firebase'
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+YellowBox.ignoreWarnings(['']);
 export const Routes = ({ }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(false)
