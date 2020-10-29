@@ -141,6 +141,7 @@ export default class Producto extends React.Component {
 const styles = StyleSheet.create({
     screenContainer: {
         alignContent: 'center',
+        justifyContent: 'center',
     },
     prodContainer: {
         backgroundColor: '#f1f1f1',
@@ -188,7 +189,8 @@ const styles = StyleSheet.create({
     },
     descripcion: {
         fontSize: 16,
-        color: '#4F94CD',
+        color: '#333',
+        fontWeight: 'bold',
         alignSelf: 'center',
         marginVertical: 10,
 

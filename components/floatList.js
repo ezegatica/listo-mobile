@@ -11,18 +11,20 @@ export default function FloatList({ navigation, data }) {
                     {
                         data.map((data, i) => {
                             let n = i;
-                            if (n < 4) {
-                                return (
-                                    <TouchableOpacity style={styles.itemContainer} key={i} onPress={
+                            return (
+                                <View key={i}>
+                                    <Text style={styles.itemTxt}>{data.txt}</Text>
+                                    <View style={styles.linea}></View>
+                                    <TouchableOpacity style={styles.itemContainer} onPress={
                                         () => navigation.navigate('Categoria')
                                     }>
+
                                         <View style={styles.shadow}>
                                             <Image style={styles.floatItem} source={data.imagen} />
                                         </View>
-                                        <Text style={styles.itemTxt}>{data.txt}</Text>
                                     </TouchableOpacity>
-                                )
-                            }
+                                </View>
+                            )
                         })
                     }
                 </View>
@@ -39,11 +41,9 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     floatContainer: {
-        marginTop: 2,
         paddingHorizontal: 7,
-        backgroundColor: '#fcfcff',
-        paddingVertical: 15,
         borderRadius: 5,
+        marginVertical: 15,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -55,22 +55,21 @@ const styles = StyleSheet.create({
     rowContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginVertical: 10,
+        width: '100%'
     },
     itemContainer: {
     },
     floatItem: {
-        height: 75,
-        width: 75,
+        height: 120,
+        width: 350,
         borderRadius: 15,
         alignSelf: 'center'
     },
     itemTxt: {
         alignSelf: 'center',
-        color: '#333',
-        fontSize: 12,
-        marginTop: 2,
-        alignSelf: 'center'
+        fontSize: 25,
+        alignSelf: 'center',
+        margin: 10
     },
     shadow: {
         ...Platform.select({
@@ -85,4 +84,12 @@ const styles = StyleSheet.create({
             },
         }),
     },
+    linea: {
+        alignSelf: 'center',
+        width: '60%',
+        backgroundColor: '#4fc3f7',
+        padding: 2,
+        marginBottom: 15
+
+    }
 })

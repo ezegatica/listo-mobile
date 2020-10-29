@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 import bg from '../assets/Card.png'
 import { AntDesign } from '@expo/vector-icons'
-import I from '../assets/carrito.png'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { color } from 'react-native-reanimated';
 export default class ProductosCarrito extends Component {
     state = {
         cantProducto: null,
+        prevCant: null,
         precio: null,
         cantTxt: null,
-        apretado: false
+        apretado: false,
     }
     componentDidMount() {
-        this.setState({ cantProducto: 1, apretado: true })
+        this.setState({ cantProducto: 1, prevCant: 1, apretado: true })
     }
     componentDidUpdate() {
         if (this.state.apretado == true) {
@@ -55,7 +54,21 @@ export default class ProductosCarrito extends Component {
     }
     txtCnat = () => {
         if (this.state.apretado) {
-            this.props.precioTotal(this.state.cantProducto, this.props.data.precio)
+            let sumaResta = this.state.prevCant
+            if (this.state.cantProducto > sumaResta) {
+                sumaResta = 1
+                this.setState({ prevCant: this.state.cantProducto })
+            }
+            else if (this.state.cantProducto == 1 && this.state.prevCant != 2) {
+                sumaResta = 1
+            }
+            else {
+                sumaResta = -1
+                this.setState({ prevCant: this.state.cantProducto })
+            }
+            //console.log('antes', this.state.prevCant);
+            //console.log('despues', this.state.cantProducto);
+            this.props.precioTotal(sumaResta, this.props.data.precio, this.props.id)
         }
         return this.state.cantProducto
     }

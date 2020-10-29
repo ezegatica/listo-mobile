@@ -15,14 +15,24 @@ export default class HeaderCarrito extends Component {
         infoProductos: null,
         cargando: true,
         detalles: '',
-        p: 0,
+        precios: [],
+        metodoDePago: 'efectivo',
     }
     componentDidMount() {
         this.getCarrito()
+        //console.log(this.state.precios);
     }
-    getPrecioTotal = (cant, precio) => {
-        this.setState({ p: cant * precio })
-        console.log(this.state.p);
+    getPrecio = (cant, precio, id) => {
+        this.state.precios.push(cant * precio)
+        this.setState({ precioTotal: this.getPrecioTotal() })
+        //console.log(this.getPrecioTotal())
+    }
+    getPrecioTotal = () => {
+        let total = 0
+        for (let i = 0; i < this.state.precios.length; i++) {
+            total += this.state.precios[i]
+        }
+        return total
     }
     getCarrito() {
         db.collection('usuarios').doc(global.UserUid).get()
@@ -119,9 +129,36 @@ export default class HeaderCarrito extends Component {
                 this.setState({ infoProductos: null, carrito: null, resto: null, infoResto: null })
             })
             .catch((err) => { console.log(err); })
+    }
+    nombreResto = () => {
+        if (this.state.infoResto) {
+            //console.log(this.state.infoResto.nombre);
+            return this.state.infoResto.nombre
+        }
+        else {
+            console.log('error');
+            return 'error'
+        }
+    }
+    pedir = () => {
+        const Estado = 0
+        db.collection('pedidos').add({
+            usuario: global.UserUid,
+            nombre: global.UserName,
+            nombre_restaurante: this.nombreResto(),
+            precio: this.getPrecioTotal(),
+            //productos
+            //data
+            comentario: this.state.detalles,
+            metodo_de_pago: this.state.metodoDePago,
+            horario_de_pedido: new Date(),
+            //cantidad_de_productos
+            estado: Estado
 
-        // console.log('arreglar esto');
-        //console.log(this.state);
+        })
+            .then(() => {
+                this.clearCarrito()
+            })
     }
     render() {
         if (this.state.infoProductos) {
@@ -143,20 +180,22 @@ export default class HeaderCarrito extends Component {
                         {
                             this.state.infoProductos.map((producto, i) => {
                                 return (
-                                    <ProductosCarrito key={i} data={producto} precioTotal={this.getPrecioTotal} />
+                                    <ProductosCarrito key={i} id={i} data={producto} precioTotal={this.getPrecio} />
                                 )
                             })
                         }
-                        <TextInput
-                            placeholder='Detalles del pedido (opcional)'
-                            style={styles.input}
-                            mode='flat'
-                            selectionColor='#007AFF'
-                            multiline={true}
-                            onChangeText={(t) => this.setState({ detalles: t })}>
-                        </TextInput>
+
                     </ScrollView>
-                    <TouchableOpacity style={styles.btn} onPress={() => { this.getPrecioTotal() }}>
+                    <TextInput
+                        placeholder='Detalles del pedido (opcional)'
+                        style={styles.input}
+                        mode='flat'
+                        selectionColor='#007AFF'
+                        multiline={true}
+                        onChangeText={(t) => this.setState({ detalles: t })}>
+                    </TextInput>
+                    <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
+                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.infoProductos) }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
                 </View>
@@ -242,7 +281,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         fontSize: 15,
         paddingVertical: 5,
-        marginVertical: 20,
+        marginVertical: 0,
         width: '90%',
         alignSelf: 'center'
     },
@@ -256,5 +295,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#007AFF',
         borderRadius: 10,
         width: '30%',
+    },
+    pf: {
+        alignSelf: 'center',
+        marginTop: 10,
+        fontSize: 17
     }
 })

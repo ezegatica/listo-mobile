@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import HeaderUser from '../components/headerUsu'
 import { globalStyles } from '../styles/global'
 import IComida from '../assets/food.jpg'
-import ILibreria from '../assets/library.jpg'
-import IFruta from '../assets/market2.jpg'
 import FloatList from '../components/floatList'
 import Favs from '../components/favs'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
@@ -15,24 +13,14 @@ export default function Home({ navigation }) {
             imagen: IComida,
             txt: 'Restaurantes'
         },
-        {
-            imagen: IFruta,
-            txt: 'buenas buenas'
-        },
     ]
-    const uid = () => {
-        const uid = global.UserUid
-        if (uid != 'No hay nada') {
-            return <Text>{uid}</Text>
-        }
-    }
     return (
         <SafeAreaView>
+            <HeaderUser />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={globalStyles.screenContainer}>
-                    <HeaderUser />
                     <FloatList navigation={navigation} data={datos} />
-                    <Favs />
+                    <Favs navigation={navigation} />
                 </View>
             </ScrollView>
         </SafeAreaView>
