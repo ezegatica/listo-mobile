@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 import bg from '../assets/Card.png'
 import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import firebase, { db } from '../api/firebase';
 export default class ProductosCarrito extends Component {
     state = {
         cantProducto: null,
@@ -12,7 +13,12 @@ export default class ProductosCarrito extends Component {
         apretado: false,
     }
     componentDidMount() {
-        this.setState({ cantProducto: 1, prevCant: 1, apretado: true })
+        this.setState({
+            cantProducto: 1,
+            prevCant: 1,
+            apretado: true,
+            cantProducto: parseFloat(this.props.carrito[this.props.id].cantidad)
+        })
     }
     componentDidUpdate() {
         if (this.state.apretado == true) {
@@ -69,6 +75,18 @@ export default class ProductosCarrito extends Component {
             //console.log('antes', this.state.prevCant);
             //console.log('despues', this.state.cantProducto);
             this.props.precioTotal(sumaResta, this.props.data.precio, this.props.id)
+            db.collection('usuarios').doc(global.UserUid).update({
+                'cart': firebase.firestore.FieldValue.delete()
+            })
+                .then(() => {
+                    db.collection('usuarios').doc(global.UserUid).update({
+                        'cart': firebase.firestore.FieldValue.arrayUnion({
+                            "cantidad": this.state.cantProducto,
+                            "producto": this.props.carrito[this.props.id].producto,
+                            "restaurante": this.props.carrito[this.props.id].restaurante,
+                        })
+                    })
+                })
         }
         return this.state.cantProducto
     }
@@ -109,7 +127,6 @@ export default class ProductosCarrito extends Component {
         )
     }
     render() {
-        //console.log(this.props.detalles);
         return (
             <View style={styles.screenContainer}>
                 <View style={styles.restosCont}>

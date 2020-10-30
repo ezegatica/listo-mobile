@@ -99,7 +99,7 @@ export default class HeaderCarrito extends Component {
                     if (Data.length >= 2) {
                         Data.shift()
                     }
-                    console.log(Data);
+                    //console.log(Data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -180,7 +180,7 @@ export default class HeaderCarrito extends Component {
             nombre: global.UserName,
             nombre_restaurante: this.nombreResto(),
             precio: this.getPrecioTotal(),
-            //productos
+            //productos: id resto, id producto, cant
             data: this.state.infoProductos,
             comentario: this.detalles(),
             metodo_de_pago: this.state.metodoDePago,
@@ -204,6 +204,13 @@ export default class HeaderCarrito extends Component {
                 this.clearCarrito()
             })
     }
+    /* getCantTotal = () => {
+         let cantProd
+         this.state.carrito.forEach(e => {
+             cantProd = parseFloat(e.cantidad)
+         })
+         return cantProd
+     }*/
     render() {
         if (this.state.infoProductos) {
             return (
@@ -224,7 +231,13 @@ export default class HeaderCarrito extends Component {
                         {
                             this.state.infoProductos.map((producto, i) => {
                                 return (
-                                    <ProductosCarrito key={i} id={i} data={producto} precioTotal={this.getPrecio} />
+                                    <ProductosCarrito
+                                        key={i}
+                                        id={i}
+                                        data={producto}
+                                        precioTotal={this.getPrecio}
+                                        carrito={this.state.carrito}
+                                    />
                                 )
                             })
                         }
@@ -239,7 +252,7 @@ export default class HeaderCarrito extends Component {
                         onChangeText={(t) => this.setState({ detalles: t })}>
                     </TextInput>
                     <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => { this.pedir() }}>
+                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.carrito); }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
                 </View >
