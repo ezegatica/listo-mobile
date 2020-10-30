@@ -23,12 +23,20 @@ export default class HeaderCarrito extends Component {
     componentDidMount() {
         this.getCarrito()
     }
-    getPrecio = (cant, precio, id) => {
+    getPrecio = (cant, precio, id,) => {
         this.state.precios.push(cant * precio)
         this.state.cantProductos.push(cant)
         this.setState({ precioTotal: this.getPrecioTotal() })
-
-        //console.log(this.state.cantProductos);
+        this.updateCant(id, cant,)
+    }
+    updateCant = (id, cant) => {
+        //this.state.carrito[id].cantidad -= this.state.carrito.length
+        if (cant == 1) {
+            this.state.carrito[id].cantidad++;
+        }
+        else {
+            this.state.carrito[id].cantidad--;
+        }
     }
     getCant = () => {
         let cantidad = 0
@@ -180,7 +188,7 @@ export default class HeaderCarrito extends Component {
             nombre: global.UserName,
             nombre_restaurante: this.nombreResto(),
             precio: this.getPrecioTotal(),
-            //productos: id resto, id producto, cant
+            productos: this.state.carrito,
             data: this.state.infoProductos,
             comentario: this.detalles(),
             metodo_de_pago: this.state.metodoDePago,
@@ -252,7 +260,7 @@ export default class HeaderCarrito extends Component {
                         onChangeText={(t) => this.setState({ detalles: t })}>
                     </TextInput>
                     <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.carrito); }}>
+                    <TouchableOpacity style={styles.btn} onPress={() => { this.pedir() }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
                 </View >

@@ -72,21 +72,7 @@ export default class ProductosCarrito extends Component {
                 sumaResta = -1
                 this.setState({ prevCant: this.state.cantProducto })
             }
-            //console.log('antes', this.state.prevCant);
-            //console.log('despues', this.state.cantProducto);
             this.props.precioTotal(sumaResta, this.props.data.precio, this.props.id)
-            db.collection('usuarios').doc(global.UserUid).update({
-                'cart': firebase.firestore.FieldValue.delete()
-            })
-                .then(() => {
-                    db.collection('usuarios').doc(global.UserUid).update({
-                        'cart': firebase.firestore.FieldValue.arrayUnion({
-                            "cantidad": this.state.cantProducto,
-                            "producto": this.props.carrito[this.props.id].producto,
-                            "restaurante": this.props.carrito[this.props.id].restaurante,
-                        })
-                    })
-                })
         }
         return this.state.cantProducto
     }
