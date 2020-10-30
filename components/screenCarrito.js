@@ -17,22 +17,32 @@ export default class HeaderCarrito extends Component {
         detalles: '',
         precios: [],
         metodoDePago: 'efectivo',
+        data: null,
+        cantProductos: [],
     }
     componentDidMount() {
         this.getCarrito()
-        //console.log(this.state.precios);
     }
     getPrecio = (cant, precio, id) => {
         this.state.precios.push(cant * precio)
+        this.state.cantProductos.push(cant)
         this.setState({ precioTotal: this.getPrecioTotal() })
-        //console.log(this.getPrecioTotal())
+
+        //console.log(this.state.cantProductos);
+    }
+    getCant = () => {
+        let cantidad = 0
+        for (let i = 0; i < this.state.cantProductos.length; i++) {
+            cantidad += this.state.cantProductos[i]
+        }
+        return cantidad
     }
     getPrecioTotal = () => {
         let total = 0
         for (let i = 0; i < this.state.precios.length; i++) {
             total += this.state.precios[i]
         }
-        return total
+        return total.toString()
     }
     getCarrito() {
         db.collection('usuarios').doc(global.UserUid).get()
@@ -63,18 +73,33 @@ export default class HeaderCarrito extends Component {
             .then(() => {
                 this.getInfoProductos()
             })
+            .then(() => {
+                //this.getData()
+            })
             .catch(err => {
                 console.log('ERROR ', err);
             })
     }
     getInfoProductos = () => {
         let i = []
+        let a = 0
+        let Data = {}
         this.state.carrito.forEach(element => {
             db.collection('restaurantes').doc(this.state.resto).collection('productos').doc(element.producto).get()
                 .then(snapshot => {
                     i.push(snapshot.data())
-                    //console.log('ESTO ES I', i);
                     this.setState({ infoProductos: i })
+                    i.map((info, index) => {
+                        let foto = info.foto
+                        if (!foto) {
+                            foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
+                        }
+                        Data = { index: [info.titulo, info.precio, foto] }
+                    })
+                    if (Data.length >= 2) {
+                        Data.shift()
+                    }
+                    console.log(Data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -140,6 +165,14 @@ export default class HeaderCarrito extends Component {
             return 'error'
         }
     }
+    detalles = () => {
+        if (this.state.detalles == '') {
+            return 'Vacío'
+        }
+        else {
+            return this.state.detalles
+        }
+    }
     pedir = () => {
         const Estado = 0
         db.collection('pedidos').add({
@@ -148,14 +181,25 @@ export default class HeaderCarrito extends Component {
             nombre_restaurante: this.nombreResto(),
             precio: this.getPrecioTotal(),
             //productos
-            //data
-            comentario: this.state.detalles,
+            data: this.state.infoProductos,
+            comentario: this.detalles(),
             metodo_de_pago: this.state.metodoDePago,
             horario_de_pedido: new Date(),
-            //cantidad_de_productos
+            cantidad_de_productos: this.getCant(),
             estado: Estado
 
         })
+            .then(() => {
+                db.collection('usuarios').doc(this.state.resto).update({
+                    refresh: {
+                        tipo: 'nuevo_pedido',
+                        titulo: `Tienes un pedido nuevo!`,
+                        random: Math.random(31, 40),
+                        hora: Date.now()
+                    }
+                })
+            })
+
             .then(() => {
                 this.clearCarrito()
             })
@@ -195,10 +239,10 @@ export default class HeaderCarrito extends Component {
                         onChangeText={(t) => this.setState({ detalles: t })}>
                     </TextInput>
                     <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.infoProductos) }}>
+                    <TouchableOpacity style={styles.btn} onPress={() => { this.pedir() }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
-                </View>
+                </View >
             );
         }
         else if (!this.state.cargando && !this.state.carrito) {

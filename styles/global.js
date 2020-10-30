@@ -10,7 +10,7 @@ export const globalStyles = StyleSheet.create({
     },
     titleTxt: {
         marginTop: 100,
-        fontSize: 60,
+        fontSize: 30,
         fontWeight: 'bold',
     },
     bg: {
