@@ -3,6 +3,34 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { List } from 'react-native-paper';
 
 export default class PedidoCard extends Component {
+    estado = (e) => {
+        let estado = ''
+        switch (e) {
+            case 0:
+                estado = 'Pendiente de confirmacion'
+                break;
+            case 1:
+                estado = 'Confirmado'
+                break;
+            case 2:
+                estado = 'En preparación'
+                break;
+            case 3:
+                estado = 'Listo para retirar'
+                break;
+            case 4:
+                estado = 'Entregado'
+                break;
+            case 10:
+                estado = 'Cancelado'
+                break;
+            default:
+                estado = 'Error'
+                break;
+        }
+        return estado
+
+    }
     render() {
         //console.log('holanda', this.props.pedido.productos);
         return (
@@ -36,7 +64,10 @@ export default class PedidoCard extends Component {
                             })
                         }
                         <View style={styles.detallesGenerales}>
-                            <Text>estado:</Text>
+                            <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>{this.estado(parseFloat(this.props.pedido.estado))}</Text>
+                            <View style={{ backgroundColor: '#66CD00', borderRadius: 10 }}>
+                                <Text style={{ padding: 5, color: 'white', fontWeight: 'bold' }}>${this.props.pedido.precio}</Text>
+                            </View>
                         </View>
                     </View>
                 </List.Accordion>
@@ -52,7 +83,10 @@ const styles = StyleSheet.create({
     },
     detallesGenerales: {
         width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
     },
     Accordion: {
         margin: 10,

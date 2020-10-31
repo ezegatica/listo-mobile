@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { db } from '../api/firebase'
 import Loading from '../screens/loading'
 import { List } from 'react-native-paper'
@@ -20,6 +20,8 @@ export default class Pedidos extends Component {
         this.leerDB()
     }
     leerDB = () => {
+        this.setState({ cargado: true })
+        console.log('hola');
         db.collection('pedidos').where('usuario', '==', global.UserUid).orderBy('estado', "asc").orderBy('horario_de_pedido', 'desc').get()
             .then((resp) => {
                 const Pedidos = []
@@ -51,24 +53,33 @@ export default class Pedidos extends Component {
         }
         else if (!this.state.vacio && !this.state.cargando) {
             return (
-                <View>
-                    <List.AccordionGroup>
-                        {
-                            this.state.pedidos.activos.map((pedido, i) => {
-                                const info = pedido.info
-                                return (
-                                    <View key={i}>
-                                        <PedidoCard pedido={info} id={i} />
-                                    </View>
-                                )
-                            })
-                        }
-                    </List.AccordionGroup>
-
+                <View style={{ flexDirection: 'column', justifyContent: 'space-between', width: '100%', height: '100%' }}>
+                    <View>
+                        <Text style={{ alignSelf: 'center', fontSize: '18', color: '#007ffa' }}>Pedidos activos:</Text>
+                        <ScrollView showsVerticalScrollIndicator={false}>
+                            <List.AccordionGroup>
+                                {
+                                    this.state.pedidos.activos.map((pedido, i) => {
+                                        const info = pedido.info
+                                        return (
+                                            <View key={i}>
+                                                <PedidoCard pedido={info} id={i} />
+                                            </View>
+                                        )
+                                    })
+                                }
+                            </List.AccordionGroup>
+                        </ScrollView>
+                    </View>
+                    <TouchableOpacity
+                        style={{ width: '40%', padding: 10, backgroundColor: '#007aff', alignSelf: 'center', borderRadius: '10', marginBottom: 20 }}
+                        onPress={() => this.leerDB()}>
+                        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 17, alignSelf: 'center' }}>Actualizar</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }
-        else {
+        else if (this.state.cargado) {
             return (
                 <Loading />
             )
