@@ -29,7 +29,6 @@ export default class PedidoCard extends Component {
                 break;
         }
         return estado
-
     }
     render() {
         //console.log('holanda', this.props.pedido.productos);

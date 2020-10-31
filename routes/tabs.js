@@ -4,7 +4,7 @@ import { SearchStack } from './searchStack'
 import { AntDesign } from '@expo/vector-icons'
 import { HomeStack } from './homeStack'
 import { StyleSheet } from 'react-native'
-import Profile from '../screens/profile';
+import { ProfileStack } from './profileStack'
 
 const Tabs = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ export const AppTabs = ({ }) => {
             }}>
             <Tabs.Screen name='Inicio' component={HomeStack} />
             <Tabs.Screen name='Buscar' component={SearchStack} />
-            <Tabs.Screen name='Perfil' component={Profile} />
+            <Tabs.Screen name='Perfil' component={ProfileStack} />
         </Tabs.Navigator>
     )
 }

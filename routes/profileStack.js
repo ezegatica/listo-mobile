@@ -1,17 +1,14 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import Home from '../screens/home'
-import Categoria from '../screens/category'
-import Productos from '../screens/productos'
-import Producto from '../screens/producto'
 import BtnCarrito from '../components/btnCarrito'
-import Carrito from '../screens/carrito'
 import Pedidos from '../screens/pedidos'
+import Carrito from '../screens/carrito'
+import Profile from '../screens/profile'
 import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
 
 const Stack = createStackNavigator()
 
-export const HomeStack = ({ navigation }) => {
+export const ProfileStack = ({ navigation }) => {
 
     return (
 
@@ -26,26 +23,9 @@ export const HomeStack = ({ navigation }) => {
             },
             headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >
-            <Stack.Screen name='Inicio' options={{
-
-            }} component={Home} />
-            <Stack.Screen name='Categoria' options={{
-                headerTitle: '',
-                headerBackTitle: 'Inicio'
-            }} component={Categoria} />
-            <Stack.Screen name='Productos' options={{
-                headerTitle: '',
-                headerBackTitle: 'Restaurantes'
-            }} component={Productos} />
-            <Stack.Screen name='Producto' options={{
-                headerTitle: '',
-                headerBackTitle: 'Productos',
-            }} component={Producto} />
-            <Stack.Screen name='Carrito' options={{
-                headerTitle: '',
-                headerBackTitle: 'Atras',
-                headerRight: null
-            }} component={Carrito} />
+            <Stack.Screen name='Profile' options={{
+                headerTitle: 'Perfil'
+            }} component={Profile} />
             <Stack.Screen name='Pedidos' options={{
                 headerTitle: '',
                 headerBackTitle: 'Atras',
