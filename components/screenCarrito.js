@@ -221,13 +221,6 @@ export default class HeaderCarrito extends Component {
                 this.clearCarrito()
             })
     }
-    /* getCantTotal = () => {
-         let cantProd
-         this.state.carrito.forEach(e => {
-             cantProd = parseFloat(e.cantidad)
-         })
-         return cantProd
-     }*/
     render() {
         if (this.state.infoProductos) {
             return (
@@ -283,6 +276,11 @@ export default class HeaderCarrito extends Component {
                         this.props.navigation.navigate('Inicio')
                     }>
                         <Text style={styles.btnTxt}>¡Comprar productos!</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnView} onPress={() =>
+                        this.props.navigation.navigate('Pedidos')
+                    }>
+                        <Text style={styles.btnTxt}>¡Ver mis pedidos!</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -342,6 +340,7 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: '#007AFF',
         borderRadius: 20,
+        width: '70%'
     },
     btnTxt: {
         color: '#fff',

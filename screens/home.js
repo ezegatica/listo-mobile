@@ -14,13 +14,15 @@ export default function Home({ navigation }) {
             txt: 'Restaurantes'
         },
     ]
+    //  <Favs navigation={navigation} />             
+
+
     return (
         <SafeAreaView>
             <HeaderUser />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={globalStyles.screenContainer}>
                     <FloatList navigation={navigation} data={datos} />
-                    <Favs navigation={navigation} />
                 </View>
             </ScrollView>
         </SafeAreaView>

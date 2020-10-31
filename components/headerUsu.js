@@ -30,7 +30,7 @@ export default class HeaderUser extends Component {
     render() {
         return (
             <View style={styles.cont}>
-                <Text>{this.hayUsu()}</Text>
+                {this.hayUsu()}
             </View>
         )
     }

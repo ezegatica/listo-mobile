@@ -6,6 +6,7 @@ import Productos from '../screens/productos'
 import Producto from '../screens/producto'
 import BtnCarrito from '../components/btnCarrito'
 import Carrito from '../screens/carrito'
+import Pedidos from '../screens/pedidos'
 import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
 
 const Stack = createStackNavigator()
@@ -45,6 +46,10 @@ export const HomeStack = ({ navigation }) => {
                 headerBackTitle: 'Atras',
                 headerRight: null
             }} component={Carrito} />
+            <Stack.Screen name='Pedidos' options={{
+                headerTitle: '',
+                headerBackTitle: 'Carrito',
+            }} component={Pedidos} />
         </Stack.Navigator>
     )
 }

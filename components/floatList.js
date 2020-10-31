@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     itemContainer: {
+        width: '100%',
     },
     floatItem: {
         height: 120,
