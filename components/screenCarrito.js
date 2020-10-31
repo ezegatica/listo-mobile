@@ -19,7 +19,8 @@ export default class HeaderCarrito extends Component {
         metodoDePago: '01',
         data: null,
         cantProductos: [],
-        ID: null
+        ID: null,
+        idea: []
     }
     componentDidMount() {
         this.getCarrito()
@@ -32,10 +33,10 @@ export default class HeaderCarrito extends Component {
     }
     updateCant = (id, cant, precio) => {
         //this.state.carrito[id].cantidad -= this.state.carrito.length
-        this.state.carrito[id].cantidad += cant;
-    }
-    updateCarrito = () => {
-
+        this.setState({ ID: id })
+        this.state.idea.push(id)
+        console.log(this.state.idea);
+        this.state.carrito[id].cantidad = (parseFloat(this.state.carrito[id].cantidad) + cant).toString();
     }
     getCant = () => {
         let cantidad = 0
@@ -179,6 +180,17 @@ export default class HeaderCarrito extends Component {
         }
     }
     pedir = () => {
+        const resta = this.state.infoProductos.length
+        const cantP = this.state.carrito.length
+        for (let i = 0; i < cantP; i++) {
+            if (this.state.carrito[i].cantidad != '1' && cantP > 1) {
+                console.log('hola');
+                this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - resta + 1).toString()
+            }
+            else {
+                this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - resta).toString()
+            }
+        }
         const Estado = 0
         db.collection('pedidos').add({
             usuario: global.UserUid,
@@ -257,7 +269,7 @@ export default class HeaderCarrito extends Component {
                         onChangeText={(t) => this.setState({ detalles: t })}>
                     </TextInput>
                     <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.infoProductos.length); }}>
+                    <TouchableOpacity style={styles.btn} onPress={() => { this.pedir() }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
                 </View >
