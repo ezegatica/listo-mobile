@@ -28,12 +28,12 @@ export default class Favs extends Component {
                 });
             })
     }
-    card = (fav, i) => {
-        if (fav.nombre != undefined) {
-            //console.log(i, fav.nombre);
-            return true
-        }
-    }
+    /* card = (fav, i) => {
+         if (fav.nombre != undefined) {
+             //console.log(i, fav.nombre);
+             return true
+         }
+     }*/
 
     render() {
         var arrayNombres = []
@@ -57,24 +57,23 @@ export default class Favs extends Component {
 
                         {
                             arrayNombres.map((fav, i) => {
-                                let foto = fav.foto
+                                /*let foto = fav.foto
                                 if (!foto) {
                                     foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
-                                }
+                                }*/
                                 {
-                                    if (this.card(fav, i)) {
-                                        //console.log('hola');
-                                        return (
-                                            <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
-                                                this.props.navigation.navigate('Categoria')
-                                            }}>
-                                                <View style={this.styles.fotoV}>
-                                                    <Image style={this.styles.foto} source={{ uri: foto }} />
-                                                </View>
-                                                <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
-                                            </TouchableOpacity>
-                                        )
-                                    }
+                                    //if (this.card(fav, i)) {
+                                    //console.log('hola');
+                                    return (
+                                        <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
+                                            this.props.navigation.navigate('Categoria')
+                                        }}>
+                                            <View style={this.styles.fotoV}>
+                                            </View>
+                                            <Text style={this.styles.tituloFav}>hola</Text>
+                                        </TouchableOpacity>
+                                    )
+                                    // }
                                 }
 
                             })
@@ -103,9 +102,10 @@ export default class Favs extends Component {
         },
         scroll: {
             width: '100%',
+            alignSelf: 'center'
         },
         fav: {
-            marginHorizontal: 8
+            marginHorizontal: 8,
         },
         foto: {
             height: 100,

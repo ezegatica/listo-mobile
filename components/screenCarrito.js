@@ -16,9 +16,10 @@ export default class HeaderCarrito extends Component {
         cargando: true,
         detalles: '',
         precios: [],
-        metodoDePago: 'efectivo',
+        metodoDePago: '01',
         data: null,
         cantProductos: [],
+        ID: null
     }
     componentDidMount() {
         this.getCarrito()
@@ -26,17 +27,15 @@ export default class HeaderCarrito extends Component {
     getPrecio = (cant, precio, id,) => {
         this.state.precios.push(cant * precio)
         this.state.cantProductos.push(cant)
-        this.setState({ precioTotal: this.getPrecioTotal() })
-        this.updateCant(id, cant,)
+        this.setState({ precioTotal: this.getPrecioTotal(), ID: id })
+        this.updateCant(id, cant, precio)
     }
-    updateCant = (id, cant) => {
+    updateCant = (id, cant, precio) => {
         //this.state.carrito[id].cantidad -= this.state.carrito.length
-        if (cant == 1) {
-            this.state.carrito[id].cantidad++;
-        }
-        else {
-            this.state.carrito[id].cantidad--;
-        }
+        this.state.carrito[id].cantidad += cant;
+    }
+    updateCarrito = () => {
+
     }
     getCant = () => {
         let cantidad = 0
@@ -158,14 +157,12 @@ export default class HeaderCarrito extends Component {
             "cart": firebase.firestore.FieldValue.delete()
         })
             .then(() => {
-                //console.log('HOLA LL');
                 this.setState({ infoProductos: null, carrito: null, resto: null, infoResto: null })
             })
             .catch((err) => { console.log(err); })
     }
     nombreResto = () => {
         if (this.state.infoResto) {
-            //console.log(this.state.infoResto.nombre);
             return this.state.infoResto.nombre
         }
         else {
@@ -260,7 +257,7 @@ export default class HeaderCarrito extends Component {
                         onChangeText={(t) => this.setState({ detalles: t })}>
                     </TextInput>
                     <Text style={styles.pf}>Precio final: <Text style={{ color: 'green' }}>${this.getPrecioTotal()}</Text></Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => { this.pedir() }}>
+                    <TouchableOpacity style={styles.btn} onPress={() => { console.log(this.state.infoProductos.length); }}>
                         <Text style={styles.btnTxt}>¡Pedir!</Text>
                     </TouchableOpacity>
                 </View >
