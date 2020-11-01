@@ -23,6 +23,7 @@ export default function Home({ navigation }) {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={globalStyles.screenContainer}>
                     <FloatList navigation={navigation} data={datos} />
+                    <Favs navigation={navigation}></Favs>
                 </View>
             </ScrollView>
         </SafeAreaView>

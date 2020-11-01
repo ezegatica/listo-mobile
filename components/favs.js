@@ -11,8 +11,11 @@ export default class Favs extends Component {
     componentDidMount = () => {
         var Favs = []
         var a = []
-        db.collection('usuarios').doc(global.UserUid).get()
-            .then(snapshot => {
+        //console.log("entro")
+        db.collection('usuarios').doc(global.UserUid).onSnapshot(
+            snapshot => {
+                Favs = []
+                a = []
                 snapshot.data().favoritos.forEach(element => {
                     Favs.push(element)
                 })
@@ -38,7 +41,7 @@ export default class Favs extends Component {
     render() {
         var arrayNombres = []
         this.state.favsInfo.forEach(i => {
-            arrayNombres.push(i, " ")
+            arrayNombres.push(i)
         })
         //console.log('HOLA', arrayNombres);
 
@@ -57,23 +60,23 @@ export default class Favs extends Component {
 
                         {
                             arrayNombres.map((fav, i) => {
-                                /*let foto = fav.foto
+                                let foto = fav.foto
                                 if (!foto) {
                                     foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
-                                }*/
+                                }
                                 {
-                                    //if (this.card(fav, i)) {
-                                    //console.log('hola');
+                                    /* if (this.card(fav, i)) {
+                                    console.log('hola'); */
+                                    console.log("hey, dont touch her",foto);
                                     return (
                                         <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
                                             this.props.navigation.navigate('Categoria')
                                         }}>
-                                            <View style={this.styles.fotoV}>
-                                            </View>
-                                            <Text style={this.styles.tituloFav}>hola</Text>
+                                            <Image source={{ uri: foto }} style={this.styles.foto}></Image>
+                                            <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
                                         </TouchableOpacity>
                                     )
-                                    // }
+                                    //}
                                 }
 
                             })
@@ -106,10 +109,12 @@ export default class Favs extends Component {
         },
         fav: {
             marginHorizontal: 8,
+            backgroundColor: '#E4DEE3',
+            borderRadius: 6,
         },
         foto: {
             height: 100,
-            width: 100,
+            width: 200,
             alignSelf: "center",
             backgroundColor: '#b1b1b1',
             borderRadius: 10,
@@ -124,7 +129,7 @@ export default class Favs extends Component {
             shadowRadius: 3.46,
         },
         tituloFav: {
-            fontSize: 11,
+            fontSize: 14,
             alignSelf: 'center',
             margin: 5,
             color: '#000'
