@@ -15,7 +15,6 @@ export default class CatSeleccionada extends React.Component {
             )
         }
         if (!this.props.data) {
-            //console.log('CARGANDO...');
             return (
                 <Loading />
             )
@@ -25,6 +24,6 @@ export default class CatSeleccionada extends React.Component {
 }
 const styles = StyleSheet.create({
     scroll: {
-        marginBottom: 218,
+        marginBottom: 0,
     }
 })
