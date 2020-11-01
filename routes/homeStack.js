@@ -14,7 +14,6 @@ const Stack = createStackNavigator()
 export const HomeStack = ({ navigation }) => {
 
     return (
-
         <Stack.Navigator screenOptions={{
             headerTitleAlign: 'center',
             headerTitleAllowFontScaling: true,

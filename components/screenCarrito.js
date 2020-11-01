@@ -203,8 +203,8 @@ export default class HeaderCarrito extends Component {
             metodo_de_pago: this.state.metodoDePago,
             horario_de_pedido: new Date(),
             cantidad_de_productos: this.getCant(),
-            estado: Estado
-
+            estado: Estado,
+            restaurante: this.state.resto
         })
             .then(() => {
                 db.collection('usuarios').doc(this.state.resto).update({

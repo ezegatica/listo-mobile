@@ -33,6 +33,10 @@ export default class Categoria extends React.Component {
             {
                 txt: 'hamburguesas',
                 image: Ihamburguesa
+            },
+            {
+                txt: 'pasta',
+                image: Ihamburguesa
             }
         ],
     }

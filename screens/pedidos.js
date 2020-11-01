@@ -19,10 +19,17 @@ export default class Pedidos extends Component {
     componentDidMount() {
         this.leerDB()
     }
+    /*componentDidUpdate =()=>{
+        db.collection('usuarios').doc(global.UserUid).onSnapshot(
+           snapshot =>{
+               snapshot.data()
+           } 
+        )
+    }*/
     leerDB = () => {
         this.setState({ cargado: true })
-        db.collection('pedidos').where('usuario', '==', global.UserUid).orderBy('estado', "asc").orderBy('horario_de_pedido', 'desc').get()
-            .then((resp) => {
+        db.collection('pedidos').where('usuario', '==', global.UserUid).orderBy('estado', "asc").orderBy('horario_de_pedido', 'desc').onSnapshot(
+            resp => {
                 const Pedidos = []
                 resp.forEach(doc => {
                     let info = doc.data()
@@ -42,7 +49,7 @@ export default class Pedidos extends Component {
                     },
                     cargado: false
                 })
-            }).catch(error => console.log(error))
+            })
     }
 
     render() {
@@ -79,11 +86,6 @@ export default class Pedidos extends Component {
                             </List.AccordionGroup>
                         </ScrollView>
                     </View>
-                    <TouchableOpacity
-                        style={{ width: '40%', padding: 10, backgroundColor: '#007aff', alignSelf: 'center', borderRadius: '10', marginBottom: 20 }}
-                        onPress={() => this.leerDB()}>
-                        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 17, alignSelf: 'center' }}>Actualizar</Text>
-                    </TouchableOpacity>
                 </View>
             );
         }

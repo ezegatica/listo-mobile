@@ -6,7 +6,8 @@ export default class Favs extends Component {
 
     state = {
         favsInfo: [],
-        loading: true
+        loading: true,
+        vacio: true
     }
     componentDidMount = () => {
         var Favs = []
@@ -16,28 +17,26 @@ export default class Favs extends Component {
             snapshot => {
                 Favs = []
                 a = []
-                snapshot.data().favoritos.forEach(element => {
-                    Favs.push(element)
-                })
-                Favs.forEach(elemento => {
-                    db.collection("restaurantes").doc(elemento).get()
-                        .then(snapshot => {
-                            a.push(snapshot.data())
-                        })
-                        .then(() => {
-                            this.setState({ favsInfo: a });
-                            this.setState({ loading: false })
-                        })
-                });
+                if (snapshot.data().favoritos) {
+
+                    snapshot.data().favoritos.forEach(element => {
+                        Favs.push(element)
+                    })
+                    Favs.forEach(elemento => {
+                        db.collection("restaurantes").doc(elemento).get()
+                            .then(snapshot => {
+                                a.push(snapshot.data())
+                            })
+                            .then(() => {
+                                this.setState({ favsInfo: a, vacio: false, loading: false });
+                            })
+                    });
+                }
+                else {
+                    this.setState({ loading: false, vacio: true })
+                }
             })
     }
-    /* card = (fav, i) => {
-         if (fav.nombre != undefined) {
-             //console.log(i, fav.nombre);
-             return true
-         }
-     }*/
-
     render() {
         var arrayNombres = []
         this.state.favsInfo.forEach(i => {
@@ -51,7 +50,7 @@ export default class Favs extends Component {
                 </ActivityIndicator>
             )
         }
-        else {
+        else if (!this.state.loading && !this.state.vacio) {
             return (
                 <View style={this.styles.cont}>
                     <Text style={this.styles.titulo}>¡Tus favoritos!</Text>
@@ -60,31 +59,38 @@ export default class Favs extends Component {
 
                         {
                             arrayNombres.map((fav, i) => {
-                                let foto = fav.foto
-                                if (!foto) {
-                                    foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
-                                }
-                                {
-                                    /* if (this.card(fav, i)) {
-                                    console.log('hola'); */
-                                    console.log("hey, dont touch her",foto);
-                                    return (
-                                        <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
-                                            this.props.navigation.navigate('Categoria')
-                                        }}>
-                                            <Image source={{ uri: foto }} style={this.styles.foto}></Image>
-                                            <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
-                                        </TouchableOpacity>
-                                    )
-                                    //}
-                                }
+                                console.log(fav)
+                                if (fav) {
+                                    let foto = fav.foto
+                                    if (!foto) {
+                                        foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
+                                    }
+                                    //<Image source={{ uri: foto }} style={this.styles.foto}></Image>
 
+                                    {
+                                        /* if (this.card(fav, i)) {
+                                        console.log('hola'); */
+                                        //console.log("hey, dont touch her", foto);
+                                        return (
+                                            <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
+                                                this.props.navigation.navigate('Categoria')
+                                            }}>
+                                                <Image source={{ uri: foto }} style={this.styles.foto}></Image>
+                                                <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
+                                            </TouchableOpacity>
+                                        )
+                                        //}
+                                    }
+                                }
                             })
                         }
                     </ScrollView>
 
                 </View>
             )
+        }
+        else {
+            return <Text>NO HAY FAVORITOS</Text>
         }
 
 
@@ -105,7 +111,8 @@ export default class Favs extends Component {
         },
         scroll: {
             width: '100%',
-            alignSelf: 'center'
+            alignSelf: 'center',
+            marginTop: 10
         },
         fav: {
             marginHorizontal: 8,
@@ -132,8 +139,8 @@ export default class Favs extends Component {
             fontSize: 14,
             alignSelf: 'center',
             margin: 5,
-            color: '#000'
-
+            color: '#000',
+            fontWeight: 'bold'
         },
         linea: {
             alignSelf: 'center',
