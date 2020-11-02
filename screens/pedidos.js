@@ -19,13 +19,6 @@ export default class Pedidos extends Component {
     componentDidMount() {
         this.leerDB()
     }
-    /*componentDidUpdate =()=>{
-        db.collection('usuarios').doc(global.UserUid).onSnapshot(
-           snapshot =>{
-               snapshot.data()
-           } 
-        )
-    }*/
     leerDB = () => {
         this.setState({ cargado: true })
         db.collection('pedidos').where('usuario', '==', global.UserUid).orderBy('estado', "asc").orderBy('horario_de_pedido', 'desc').onSnapshot(

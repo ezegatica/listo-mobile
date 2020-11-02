@@ -4,6 +4,7 @@ import Isandwiches from '../assets/galletita.png'
 import Isushi from '../assets/sushi.png'
 import Ipollo from '../assets/jamon.png'
 import Iempanadas from '../assets/taco.png'
+import Ipasta from '../assets/pasta.png'
 import Cards from '../components/card'
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { globalStyles } from '../styles/global'
@@ -36,7 +37,7 @@ export default class Categoria extends React.Component {
             },
             {
                 txt: 'pasta',
-                image: Ihamburguesa
+                image: Ipasta
             }
         ],
     }

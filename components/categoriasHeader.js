@@ -1,5 +1,5 @@
 import React from 'react'
-import Itodos from '../assets/verTodos.png'
+import Itodos from '../assets/todos.png'
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import CatSeleccionada from '../components/catSeleccionada'
 import CatDefault from '../components/catDefault'
@@ -132,24 +132,14 @@ const styles = StyleSheet.create({
         height: 55,
         width: 55,
         marginBottom: 6,
-        borderRadius: 100 / 4,
+        borderRadius: 1,
         alignSelf: 'center',
         overflow: 'hidden',
         borderColor: '#4fc3f7',
         borderWidth: 0.2,
     },
     imageContainer: {
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.3,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 1,
-            },
-        }),
+        backgroundColor: '#fff'
 
     }
 })

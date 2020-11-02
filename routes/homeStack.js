@@ -7,7 +7,7 @@ import Producto from '../screens/producto'
 import BtnCarrito from '../components/btnCarrito'
 import Carrito from '../screens/carrito'
 import Pedidos from '../screens/pedidos'
-import { TouchableOpacity, Text, StyleSheet, Button } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 const Stack = createStackNavigator()
 
