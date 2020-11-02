@@ -135,8 +135,6 @@ const styles = StyleSheet.create({
         borderRadius: 1,
         alignSelf: 'center',
         overflow: 'hidden',
-        borderColor: '#4fc3f7',
-        borderWidth: 0.2,
     },
     imageContainer: {
         backgroundColor: '#fff'
