@@ -59,7 +59,7 @@ export default class Favs extends Component {
 
                         {
                             arrayNombres.map((fav, i) => {
-                                console.log(fav)
+                                //console.log(fav)
                                 if (fav) {
                                     let foto = fav.foto
                                     if (!foto) {

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Proyecto1",
-    "slug": "Proyecto1",
-    "version": "1.0.0",
+    "name": "Listo!",
+    "slug": "Listo",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,6 +21,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "app.listo.android"
     }
   }
 }
