@@ -63,7 +63,7 @@ export default class Pedidos extends Component {
             return (
                 <View style={{ flexDirection: 'column', justifyContent: 'space-between', width: '100%', height: '100%' }}>
                     <View>
-                        <Text style={{ alignSelf: 'center', fontSize: '20', color: '#007ffa', fontWeight: '600', margin: 20 }}>Pedidos activos ({this.state.pedidos.activos.length})</Text>
+                        <Text style={{ alignSelf: 'center', color: '#007ffa', fontWeight: '600', margin: 20 }}>Pedidos activos ({this.state.pedidos.activos.length})</Text>
                         <ScrollView showsVerticalScrollIndicator={false}>
                             <List.AccordionGroup>
                                 {
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     },
     noExiste: {
         alignSelf: 'center',
-        fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 20
     },
@@ -113,7 +112,6 @@ const styles = StyleSheet.create({
     },
     btnTxt: {
         color: '#fff',
-        fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold'
     },

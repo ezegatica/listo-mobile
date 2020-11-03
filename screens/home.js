@@ -19,7 +19,6 @@ export default function Home({ navigation }) {
 
     return (
         <SafeAreaView>
-            <HeaderUser />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={globalStyles.screenContainer}>
                     <FloatList navigation={navigation} data={datos} />
