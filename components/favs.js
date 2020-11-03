@@ -39,8 +39,10 @@ export default class Favs extends Component {
     }
     render() {
         var arrayNombres = []
+        var arrayID = []
         this.state.favsInfo.forEach(i => {
             arrayNombres.push(i)
+            arrayID.push(i.id)
         })
         //console.log('HOLA', arrayNombres);
 
@@ -59,6 +61,7 @@ export default class Favs extends Component {
 
                         {
                             arrayNombres.map((fav, i) => {
+                                var j = fav
                                 //console.log(fav)
                                 if (fav) {
                                     let foto = fav.foto
@@ -68,12 +71,16 @@ export default class Favs extends Component {
                                     //<Image source={{ uri: foto }} style={this.styles.foto}></Image>
 
                                     {
-                                        /* if (this.card(fav, i)) {
-                                        console.log('hola'); */
-                                        //console.log("hey, dont touch her", foto);
                                         return (
                                             <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
-                                                this.props.navigation.navigate('Categoria')
+                                                console.log(j.id);
+                                                var str = j.id.replace(/\s+/g, '');
+                                                this.props.navigation.navigate('Productos',{
+                                                    resto: str,
+                                                    nombre: fav.nombre,
+                                                    foto: fav.foto,
+                                                    cat: fav.cat,
+                                                    cat2: fav.cat2,})
                                             }}>
                                                 <Image source={{ uri: foto }} style={this.styles.foto}></Image>
                                                 <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
@@ -90,7 +97,7 @@ export default class Favs extends Component {
             )
         }
         else {
-            return <Text>NO HAY FAVORITOS</Text>
+            return <Text>No tienes favoritos :(</Text>
         }
 
 
