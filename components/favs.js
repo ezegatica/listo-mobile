@@ -73,8 +73,7 @@ export default class Favs extends Component {
                                     {
                                         return (
                                             <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
-                                                console.log(j.id);
-                                                var str = j.id.replace(/\s+/g, '');
+                                                var str = fav.id.replace(/\s+/g, '');
                                                 this.props.navigation.navigate('Productos',{
                                                     resto: str,
                                                     nombre: fav.nombre,
