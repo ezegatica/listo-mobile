@@ -27,10 +27,12 @@ export const Routes = ({ }) => {
                     setLoading(false)
                 }
             })
-            db.collection('usuarios').doc(global.UserUid).get()
-                .then(resp => {
-                    global.UserName = resp.data().nombre
-                })
+            if (global.UserUid) {
+                db.collection('usuarios').doc(global.UserUid).get()
+                    .then(resp => {
+                        global.UserName = resp.data().nombre
+                    })
+            }
         }, 2000)
     })
     if (user && !loading) {

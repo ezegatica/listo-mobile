@@ -131,13 +131,14 @@ const styles = StyleSheet.create({
     imagen: {
         height: 55,
         width: 55,
-        marginBottom: 6,
+        marginBottom: 0,
         borderRadius: 1,
         alignSelf: 'center',
         overflow: 'hidden',
     },
     imageContainer: {
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        alignSelf: 'center'
 
     }
 })

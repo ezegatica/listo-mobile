@@ -5,6 +5,7 @@ import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 export default function Profile({ navigation }) {
     const logOut = () => {
+        navigation.navigate('Inicio')
         auth.signOut()
             .then(() => {
                 //console.log('pito o algo asi');

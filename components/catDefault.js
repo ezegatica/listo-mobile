@@ -25,8 +25,7 @@ export default class CatDefault extends React.Component {
 }
 const styles = StyleSheet.create({
     scroll: {
-        marginBottom: 0,
-        height: '100%'
+        height: '89.3%'
     }
 })
 
