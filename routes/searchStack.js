@@ -16,7 +16,7 @@ export const SearchStack = ({ navigation }) => {
             headerShown: 'float',
             headerTitleStyle: { color: '#000', fontWeight: '500' },
             cardStyle: {
-                backgroundColor: '#fff'
+                backgroundColor: '#f4f4f4'
             },
             headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >

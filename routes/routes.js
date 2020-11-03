@@ -15,7 +15,6 @@ export const Routes = ({ }) => {
     React.useEffect(() => {
         setTimeout(() => {
             auth.onAuthStateChanged(user => {
-                //console.log(user);
                 if (user) {
                     global.UserUid = user.uid
                     //global.UserName = user.displayName
