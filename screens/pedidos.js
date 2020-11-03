@@ -64,7 +64,7 @@ export default class Pedidos extends Component {
                 <View style={{ flexDirection: 'column', justifyContent: 'space-between', width: '100%', height: '100%' }}>
                     <View>
                         <Text style={{ alignSelf: 'center', color: '#007ffa', fontWeight: '600', margin: 20 }}>Pedidos activos ({this.state.pedidos.activos.length})</Text>
-                        <ScrollView showsVerticalScrollIndicator={false}>
+                        <ScrollView showsVerticalScrollIndicator={false} style={{ height: '100%' }}>
                             <List.AccordionGroup>
                                 {
                                     this.state.pedidos.activos.map((pedido, i) => {

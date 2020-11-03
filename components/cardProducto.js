@@ -7,6 +7,12 @@ import Ibg from '../assets/Card.png'
 
 //Arregñar que no se muestran los 3 puntitos
 export default class CardProducto extends Component {
+    hayLinea = (i) => {
+        if (this.props.data[i + 1] != undefined) {
+            return <View style={styles.linea2}></View>
+
+        }
+    }
     render() {
 
         return (
@@ -43,7 +49,7 @@ export default class CardProducto extends Component {
                                                 </View>
                                             </View>
                                         </TouchableOpacity>
-                                        <View style={styles.linea2}></View>
+                                        {this.hayLinea(i)}
                                     </View>
 
                                 )

@@ -220,6 +220,9 @@ export default class HeaderCarrito extends Component {
             .then(() => {
                 this.clearCarrito()
             })
+            .then(() => {
+                this.props.navigation.navigate('Pedidos')
+            })
     }
     render() {
         if (this.state.infoProductos) {

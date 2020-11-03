@@ -60,8 +60,8 @@ export default function Card({ data, navigation }) {
                                             {categoriaTxt(r)}
                                         </View>
                                     </View>
-                                    {haylinea(i)}
                                 </TouchableOpacity>
+                                {haylinea(i)}
                             </View>
                         )
                     })
