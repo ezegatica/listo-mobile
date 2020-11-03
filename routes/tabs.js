@@ -33,7 +33,7 @@ export const AppTabs = ({ }) => {
                 activeTintColor: '#01579B',
                 inactiveTintColor: '#696969',
                 tabStyle: { backgroundColor: '#ffffff', },
-
+                keyboardHidesTabBar: true
             }}>
             <Tabs.Screen name='Inicio' component={HomeStack} />
             <Tabs.Screen name='Buscar' component={SearchStack} />
