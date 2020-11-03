@@ -8,7 +8,7 @@ export default function Profile({ navigation }) {
         navigation.navigate('Inicio')
         setTimeout(() => {
             auth.signOut()
-        }, 500)
+        }, 1000)
     }
     return (
         <View style={styles.noExisteV}>
