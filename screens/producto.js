@@ -119,15 +119,23 @@ export default class Producto extends React.Component {
             return (
                 <View style={styles.screenContainer}>
                     <View style={styles.prodContainer}>
-                        <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
-                        <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
-                        <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
-                        {this.foto()}
-                        <TouchableOpacity style={styles.btn} onPress={() => {
-                            this.chek()
-                        }}>
-                            <Text style={styles.btnTxt}>Agregar al carrito</Text>
-                        </TouchableOpacity>
+                        <View style={styles.txtView}>
+                            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+                                <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
+                                <View style={styles.precioV}>
+                                    <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
+                                </View>
+                            </View>
+                            <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>
+                        </View>
+                        <View>
+                            {this.foto()}
+                            <TouchableOpacity style={styles.btn} onPress={() => {
+                                this.chek()
+                            }}>
+                                <Text style={styles.btnTxt}>Agregar al carrito</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             )
@@ -141,38 +149,28 @@ export default class Producto extends React.Component {
 const styles = StyleSheet.create({
     screenContainer: {
         alignContent: 'center',
-        justifyContent: 'center',
+        width: '100%',
+        height: '100%'
     },
     prodContainer: {
-        backgroundColor: '#f1f1f1',
+        backgroundColor: '#f4f4f4',
         marginTop: 10,
-        width: '91%',
-        alignSelf: 'center',
+        width: '100%',
         borderRadius: 15,
         padding: 10,
-        ...Platform.select({
-            ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.2,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 1,
-            },
-        }),
     },
     foto: {
         height: 220,
         width: 220,
         alignSelf: "center",
-        borderRadius: 15
+        borderRadius: 15,
+        backgroundColor: '#fff'
     },
     titulo: {
         alignSelf: 'center',
         fontSize: 25,
-        marginTop: 5,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginRight: 5
     },
     fotoContainer: {
         ...Platform.select({
@@ -187,19 +185,30 @@ const styles = StyleSheet.create({
             },
         }),
     },
+    txtView: {
+        marginBottom: 10,
+        width: '100%',
+        alignItems: 'center'
+    },
     descripcion: {
         fontSize: 16,
         color: '#333',
-        fontWeight: 'bold',
         alignSelf: 'center',
         marginVertical: 10,
-
+        marginHorizontal: 10
+    },
+    precioV: {
+        backgroundColor: '#66CD00',
+        borderRadius: 10,
+        alignSelf: 'center',
+        marginLeft: 5,
     },
     precio: {
-        color: 'green',
-        fontSize: 17,
-        marginBottom: 20,
-        alignSelf: 'center'
+        padding: 5,
+        color: 'white',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        fontSize: 15,
     },
     btn: {
         alignSelf: 'center',

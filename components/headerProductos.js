@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
         }),
     },
     foto: {
-        height: 75,
-        width: 75,
-        borderRadius: 100 / 4,
+        height: 60,
+        width: 60,
+        borderRadius: 15,
     },
     titulo: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
         color: 'black',
         paddingVertical: 5
     },
@@ -159,13 +159,13 @@ const styles = StyleSheet.create({
     linea: {
         backgroundColor: '#4fc3f7',
         marginHorizontal: 15,
-        padding: 3,
-        height: '80%',
+        padding: 2,
+        height: '60%',
         alignSelf: 'center',
         borderRadius: 5
     },
     categoria: {
-        fontSize: 16,
+        fontSize: 13,
         color: '#4F94CD',
         textTransform: 'capitalize',
     },

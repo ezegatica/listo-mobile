@@ -15,8 +15,10 @@ export const Routes = ({ }) => {
     React.useEffect(() => {
         setTimeout(() => {
             auth.onAuthStateChanged(user => {
+                //console.log(user);
                 if (user) {
                     global.UserUid = user.uid
+                    //global.UserName = user.displayName
                     setUser(true)
                     setLoading(false)
                 }
@@ -25,6 +27,10 @@ export const Routes = ({ }) => {
                     setLoading(false)
                 }
             })
+            db.collection('usuarios').doc(global.UserUid).get()
+                .then(resp => {
+                    global.UserName = resp.data().nombre
+                })
         }, 2000)
     })
     if (user && !loading) {

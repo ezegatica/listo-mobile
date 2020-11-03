@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     Accordion: {
         margin: 10,
-        backgroundColor: '#DCDCDC',
+        backgroundColor: '#f4f4f4',
         borderRadius: 10,
     },
     fotoV: {
@@ -107,13 +107,13 @@ const styles = StyleSheet.create({
         width: 75,
         borderRadius: 15,
         alignSelf: 'center',
-        backgroundColor: '#DCDCDC'
+        backgroundColor: '#fff'
     },
     linea: {
         backgroundColor: '#4fc3f7',
-        marginHorizontal: 10,
-        padding: 3,
-        height: '85%',
+        marginHorizontal: 15,
+        padding: 2,
+        height: '70%',
         alignSelf: 'center',
         borderRadius: 5
     },

@@ -22,7 +22,7 @@ export default class CardProducto extends Component {
                                     foto = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
                                 }
                                 return (
-                                    <ImageBackground key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
+                                    <View key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
                                         <TouchableOpacity onPress={() => {
                                             this.props.navigation.navigate('Producto', {
                                                 data: r.info,
@@ -37,13 +37,15 @@ export default class CardProducto extends Component {
                                                     <View>
                                                         <Text ellipsizeMode='tail' numberOfLines={1} style={styles.nombre}>{r.info.titulo}</Text>
                                                     </View>
-                                                    <View>
+                                                    <View style={styles.precioV}>
                                                         <Text style={styles.precio}>${r.info.precio}</Text>
                                                     </View>
                                                 </View>
                                             </View>
                                         </TouchableOpacity>
-                                    </ImageBackground>
+                                        <View style={styles.linea2}></View>
+                                    </View>
+
                                 )
                             })
                         }
@@ -56,12 +58,12 @@ export default class CardProducto extends Component {
 
 const styles = StyleSheet.create({
     scroll: {
-        marginBottom: 189
+        height: '100%',
+        paddingTop: 15
     },
     cont: {
         width: '100%',
         marginVertical: 3,
-        paddingVertical: 10,
     },
     prodsContainer: {
         justifyContent: 'center',
@@ -69,8 +71,9 @@ const styles = StyleSheet.create({
         width: '95%'
     },
     foto: {
-        height: 90,
-        width: 90,
+        backgroundColor: '#fff',
+        height: 80,
+        width: 80,
         marginHorizontal: 10,
         borderRadius: 100 / 10,
         overflow: "hidden",
@@ -103,11 +106,25 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'space-around'
     },
+    precioV: {
+        backgroundColor: '#66CD00',
+        borderRadius: 10
+    },
     precio: {
-        color: 'green',
-        fontSize: 15,
+        padding: 5,
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 13,
     },
     espacio: {
         paddingVertical: 150
     },
+    linea2: {
+        backgroundColor: '#c4c4c4',
+        height: 2,
+        width: '95%',
+        alignSelf: "center",
+        marginVertical: 18,
+        borderRadius: 10
+    }
 })

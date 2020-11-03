@@ -184,7 +184,7 @@ export default class HeaderCarrito extends Component {
         const cantP = this.state.carrito.length
         for (let i = 0; i < cantP; i++) {
             if (this.state.carrito[i].cantidad != '1' && cantP > 1) {
-                console.log('hola');
+                //console.log('hola');
                 this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - resta + 1).toString()
             }
             else {
@@ -306,13 +306,14 @@ const styles = StyleSheet.create({
     },
     linea: {
         width: '100%',
-        backgroundColor: '#4fc3f7',
-        height: 5,
+        backgroundColor: '#007aff',
+        height: 1,
         borderRadius: 10,
     },
     headerCont: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundColor: '#fff'
     },
     icono: {
         alignSelf: 'center',
@@ -350,7 +351,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 45,
-        backgroundColor: 'rgba(255,255,255,.9)',
+        backgroundColor: '#F4F4F4',
         paddingLeft: 10,
         fontSize: 15,
         paddingVertical: 5,

@@ -25,8 +25,14 @@ export default function Card({ data, navigation }) {
             )
         }
     }
+    const haylinea = (i) => {
+        if (data[i + 1] != undefined) {
+            return <View style={styles.linea2}></View>
+
+        }
+    }
     return (
-        <View style={globalStyles.screenContainer}>
+        <View style={{ marginTop: 15 }}>
             <View style={styles.restosContainer}>
                 {
                     data.map((r, i) => {
@@ -35,7 +41,7 @@ export default function Card({ data, navigation }) {
                             imagen = 'https://firebasestorage.googleapis.com/v0/b/prueba-proyecto-tic.appspot.com/o/producto.png?alt=media&token=022e7368-74eb-4829-acd0-8da7661cc26f'
                         }
                         return (
-                            <ImageBackground key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
+                            <View key={i} source={Ibg} style={styles.cont} resizeMode='stretch' >
                                 <TouchableOpacity onPress={() => {
                                     navigation.navigate('Productos', {
                                         resto: r.id,
@@ -49,14 +55,14 @@ export default function Card({ data, navigation }) {
                                         <View style={styles.fotoView}>
                                             <Image source={{ uri: imagen }} style={styles.foto} />
                                         </View>
-                                        <View style={styles.linea}></View>
                                         <View style={styles.textsContainer}>
                                             <Text style={styles.nombre}>{r.info.nombre}</Text>
                                             {categoriaTxt(r)}
                                         </View>
                                     </View>
+                                    {haylinea(i)}
                                 </TouchableOpacity>
-                            </ImageBackground>
+                            </View>
                         )
                     })
                 }
@@ -69,8 +75,6 @@ export default function Card({ data, navigation }) {
 const styles = StyleSheet.create({
     cont: {
         width: '100%',
-        marginVertical: 3,
-        paddingVertical: 10,
     },
     cardContainer: {
         flexDirection: 'row',
@@ -93,8 +97,8 @@ const styles = StyleSheet.create({
 
     },
     foto: {
-        width: 90,
-        height: 90,
+        width: 77,
+        height: 77,
         marginHorizontal: 10,
         borderRadius: 100 / 10,
         overflow: "hidden",
@@ -106,27 +110,28 @@ const styles = StyleSheet.create({
     },
     textsContainer: {
         marginLeft: 5,
-        marginTop: 5
+        marginTop: 5,
+        justifyContent: 'flex-start'
     },
     nombre: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 15,
         color: '#000'
     },
     categoriaTxt: {
         marginTop: 6,
-        fontSize: 14,
+        fontSize: 13,
         color: '#4F94CD',
+        fontWeight: 'bold',
         textTransform: 'capitalize',
     },
-    linea: {
-        backgroundColor: '#4fc3f7',
-        marginLeft: 4,
-        marginRight: 6,
-        padding: 3,
-        height: '95%',
-        alignSelf: 'center',
-        borderRadius: 5
+    linea2: {
+        backgroundColor: '#c4c4c4',
+        height: 2,
+        width: '95%',
+        alignSelf: "center",
+        marginVertical: 18,
+        borderRadius: 10
     }
 
 })

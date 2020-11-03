@@ -8,6 +8,7 @@ import BtnCarrito from '../components/btnCarrito'
 import Carrito from '../screens/carrito'
 import Pedidos from '../screens/pedidos'
 import { StyleSheet } from 'react-native'
+import navbar from '../assets/navbar.png'
 
 const Stack = createStackNavigator()
 
@@ -21,7 +22,7 @@ export const HomeStack = ({ navigation }) => {
             headerShown: 'float',
             headerTitleStyle: { color: '#000', fontWeight: '500' },
             cardStyle: {
-                backgroundColor: '#fff'
+                backgroundColor: '#f4f4f4'
             },
             headerRight: () => (<BtnCarrito navigation={navigation} />)
         }} >
