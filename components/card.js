@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     categoriaTxt: {
         marginTop: 6,
         fontSize: 13,
-        color: '#4F94CD',
+        color: '#007aff',
         fontWeight: 'bold',
         textTransform: 'capitalize',
     },

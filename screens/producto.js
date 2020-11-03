@@ -34,7 +34,7 @@ export default class Producto extends React.Component {
                 this.setState({ agregado: true })
             })
             .then(() => {
-                this.props.navigation.navigate('Categoria')
+                this.props.navigation.goBack()
             })
             .catch((err) => {
                 console.log('ERROR: ', err);
@@ -85,7 +85,7 @@ export default class Producto extends React.Component {
         }
         else if (esIgual || this.state.agregado) {
             //console.log('es igual');
-            this.props.navigation.navigate('Categoria')
+            this.props.navigation.goBack()
             Alert.alert(
                 'Ups:(',
                 'Parece que ya tenés este producto en tu carrito, le podes cambiar la cantidad en el carrito'
