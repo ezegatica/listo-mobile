@@ -6,10 +6,9 @@ import { auth } from '../api/firebase'
 export default function Profile({ navigation }) {
     const logOut = () => {
         navigation.navigate('Inicio')
-        auth.signOut()
-            .then(() => {
-                //console.log('pito o algo asi');
-            })
+        setTimeout(() => {
+            auth.signOut()
+        }, 500)
     }
     return (
         <View style={styles.noExisteV}>
