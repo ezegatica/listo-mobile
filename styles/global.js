@@ -37,7 +37,7 @@ export const globalStyles = StyleSheet.create({
         alignSelf: 'center',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 25,
     },
     btnContainer: {
         width: '90%',

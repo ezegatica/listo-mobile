@@ -3,7 +3,7 @@ import { StyleSheet, Button, Text, View, TouchableOpacity, ImageBackground, Text
 import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
-import BGprueba from '../assets/fondoPrueba.jpg'
+import BGprueba from '../assets/template.png'
 
 export function Login({ navigation }) {
   const [mail, setMail] = useState("");
@@ -59,13 +59,15 @@ const styles = StyleSheet.create({
   },
   titulo: {
     alignSelf: 'center',
-    fontSize: 30,
-    fontWeight: 'bold'
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#007aff'
 
   },
   input: {
     height: 45,
-    backgroundColor: 'rgba(255,255,255,.8)',
+    backgroundColor: '#fff',
+    opacity: 1,
     paddingLeft: 10,
     borderRadius: 20,
     fontSize: 15,
@@ -90,17 +92,18 @@ const styles = StyleSheet.create({
     margin: 10,
     alignSelf: 'center',
     padding: 10,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#007aff',
     borderRadius: 10,
     width: '30%',
   },
   btnText: {
     alignSelf: 'center',
     fontSize: 18,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
   txt: {
-    color: '#fff',
+    color: '#007aff',
     fontSize: 18,
     alignSelf: 'center'
   },

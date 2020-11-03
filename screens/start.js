@@ -1,18 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global'
-import BGprueba from '../assets/fondoPrueba.jpg'
+import BGprueba from '../assets/start.png'
 export default function Start({ navigation }) {
 
     return (
-        <View style={globalStyles.screenContainer}>
-            <ImageBackground source={BGprueba} style={globalStyles.bg}>
-                <Text style={globalStyles.titleTxt}>Listo</Text>
-                <View style={globalStyles.btnContainer}>
-                    <TouchableOpacity style={globalStyles.btnAzul} onPress={() => navigation.navigate('Login')}>
+        <View style={{ height: '100%', width: '100%' }}>
+            <ImageBackground resizeMode='stretch' source={BGprueba} style={{ width: '100%', flex: 1, justifyContent: 'center' }}>
+                <View style={styles.btnCont}>
+                    <TouchableOpacity style={styles.btnAzul} onPress={() => navigation.navigate('Login')}>
                         <Text style={globalStyles.btnTxt}>Iniciar Sesión</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={globalStyles.btnAzul} onPress={() => navigation.navigate('Signup')}>
+                    <TouchableOpacity style={styles.btnAzul} onPress={() => navigation.navigate('Signup')}>
                         <Text style={globalStyles.btnTxt}>Registrarse</Text>
                     </TouchableOpacity>
                 </View>
@@ -22,5 +21,16 @@ export default function Start({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    btnCont: {
+        marginTop: 300,
+        width: '80%',
+        alignSelf: "center",
+    },
+    btnAzul: {
+        backgroundColor: '#007aff',
+        borderRadius: 15,
+        padding: 14,
+        marginVertical: 10
+    },
 
 })

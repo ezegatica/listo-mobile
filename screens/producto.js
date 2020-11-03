@@ -33,6 +33,9 @@ export default class Producto extends React.Component {
                 )
                 this.setState({ agregado: true })
             })
+            .then(() => {
+                this.props.navigation.navigate('Categoria')
+            })
             .catch((err) => {
                 console.log('ERROR: ', err);
                 alert('ups:(', 'Error al agregar carrito')
@@ -82,6 +85,7 @@ export default class Producto extends React.Component {
         }
         else if (esIgual || this.state.agregado) {
             //console.log('es igual');
+            this.props.navigation.navigate('Categoria')
             Alert.alert(
                 'Ups:(',
                 'Parece que ya tenés este producto en tu carrito, le podes cambiar la cantidad en el carrito'
@@ -123,7 +127,7 @@ export default class Producto extends React.Component {
                             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                                 <Text style={styles.titulo}>{this.props.route.params.data.titulo}</Text>
                                 <View style={styles.precioV}>
-                                    <Text style={styles.precio}> $ {this.props.route.params.data.precio}</Text>
+                                    <Text style={styles.precio}>${this.props.route.params.data.precio}</Text>
                                 </View>
                             </View>
                             <Text style={styles.descripcion}>{this.props.route.params.data.descripcion}</Text>

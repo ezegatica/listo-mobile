@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, Alert, SafeAreaView, ImageBackground, KeyboardAvoidingView } from 'react-native';
-import { globalStyles } from '../styles/global'
 import { auth } from '../api/firebase'
 import { db } from '../api/firebase'
-import BGprueba from '../assets/fondoPrueba.jpg'
+import BGprueba from '../assets/template.png'
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
@@ -91,12 +90,13 @@ const styles = StyleSheet.create({
   },
   titulo: {
     alignSelf: 'center',
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: 'bold',
+    color: '#007aff'
   },
   input: {
     height: 45,
-    backgroundColor: 'rgba(255,255,255,.8)',
+    backgroundColor: '#fff',
     paddingLeft: 10,
     borderRadius: 20,
     fontSize: 15,
@@ -126,11 +126,12 @@ const styles = StyleSheet.create({
   btnText: {
     alignSelf: 'center',
     fontSize: 18,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
   txt: {
-    color: '#fff',
+    color: '#007aff',
     fontSize: 18,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 })
