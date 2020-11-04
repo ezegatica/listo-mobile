@@ -357,8 +357,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F4F4F4',
         paddingLeft: 10,
         fontSize: 15,
-        paddingVertical: 10,
-        marginVertical: 5,
+        paddingVertical: 7,
+        marginVertical: 0,
         width: '90%',
         alignSelf: 'center'
     },
