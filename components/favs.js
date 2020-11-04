@@ -106,11 +106,12 @@ export default class Favs extends Component {
     styles = StyleSheet.create({
         cont: {
             alignItems: 'center',
-            width: '100%'
+            width: '100%',
+            marginTop: 30
         },
         titulo: {
             fontSize: 25,
-            margin: 10
+            margin: 10,
         },
         act: {
             alignSelf: 'center',
@@ -144,15 +145,14 @@ export default class Favs extends Component {
         },
         tituloFav: {
             fontSize: 14,
-            alignSelf: 'center',
             margin: 5,
             color: '#000',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            alignSelf: 'center'
         },
         linea: {
-            alignSelf: 'center',
             width: '60%',
-            backgroundColor: '#4fc3f7',
+            backgroundColor: '#007aff',
             padding: 2,
             marginBottom: 15
 

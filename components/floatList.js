@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     floatItem: {
-        height: 120,
-        width: 350,
+        height: 220,
+        width: 300,
         borderRadius: 15,
         alignSelf: 'center'
     },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     linea: {
         alignSelf: 'center',
         width: '60%',
-        backgroundColor: '#4fc3f7',
+        backgroundColor: '#007aff',
         padding: 2,
         marginBottom: 15
 
