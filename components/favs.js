@@ -74,12 +74,13 @@ export default class Favs extends Component {
                                         return (
                                             <TouchableOpacity key={i} style={this.styles.fav} onPress={() => {
                                                 var str = fav.id.replace(/\s+/g, '');
-                                                this.props.navigation.navigate('Productos',{
+                                                this.props.navigation.navigate('Productos', {
                                                     resto: str,
                                                     nombre: fav.nombre,
                                                     foto: fav.foto,
                                                     cat: fav.cat,
-                                                    cat2: fav.cat2,})
+                                                    cat2: fav.cat2,
+                                                })
                                             }}>
                                                 <Image source={{ uri: foto }} style={this.styles.foto}></Image>
                                                 <Text style={this.styles.tituloFav}>{fav.nombre}</Text>
@@ -122,14 +123,14 @@ export default class Favs extends Component {
         },
         fav: {
             marginHorizontal: 8,
-            backgroundColor: '#E4DEE3',
+            backgroundColor: '#fff',
             borderRadius: 6,
         },
         foto: {
             height: 100,
-            width: 200,
+            width: 150,
             alignSelf: "center",
-            backgroundColor: '#b1b1b1',
+            backgroundColor: '#fff',
             borderRadius: 10,
         },
         fotoV: {

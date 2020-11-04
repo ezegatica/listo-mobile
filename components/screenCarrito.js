@@ -184,8 +184,8 @@ export default class HeaderCarrito extends Component {
         const cantP = this.state.carrito.length
         for (let i = 0; i < cantP; i++) {
             if (this.state.carrito[i].cantidad != '1' && cantP > 1) {
-                //console.log('hola');
-                this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - resta + 1).toString()
+                this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - 1).toString()
+                console.log('HOLANasfsd', this.state.carrito[i].cantidad);
             }
             else {
                 this.state.carrito[i].cantidad = (parseFloat(this.state.carrito[i].cantidad) - resta).toString()
