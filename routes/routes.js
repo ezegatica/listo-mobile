@@ -30,6 +30,7 @@ export const Routes = ({ }) => {
                 db.collection('usuarios').doc(global.UserUid).get()
                     .then(resp => {
                         global.UserName = resp.data().nombre
+                        global.UserLastName = resp.data().apellido
                     })
             }
         }, 2000)

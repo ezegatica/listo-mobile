@@ -12,7 +12,7 @@ export default function Profile({ navigation }) {
     }
     return (
         <View style={styles.noExisteV}>
-            <Text style={styles.noExiste}>{global.UserName}</Text>
+            <Text style={styles.noExiste}>{global.UserName} {global.UserLastName}</Text>
             <TouchableOpacity style={styles.btnView} onPress={() => { logOut() }}>
                 <Text style={styles.btnTxt}>Cerrar sesión</Text>
             </TouchableOpacity>

@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     precioV: {
-        backgroundColor: '#66CD00',
+        backgroundColor: '#007aff',
         borderRadius: 10
     },
     precio: {

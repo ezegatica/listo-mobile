@@ -240,7 +240,7 @@ export default class HeaderCarrito extends Component {
                         </View>
                     </View>
                     <View style={styles.linea}></View>
-                    <ScrollView style={styles.scroll}>
+                    <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false} bounces={true}>
                         {
                             this.state.infoProductos.map((producto, i) => {
                                 return (
@@ -357,8 +357,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F4F4F4',
         paddingLeft: 10,
         fontSize: 15,
-        paddingVertical: 5,
-        marginVertical: 0,
+        paddingVertical: 10,
+        marginVertical: 5,
         width: '90%',
         alignSelf: 'center'
     },

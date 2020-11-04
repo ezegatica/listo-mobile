@@ -66,7 +66,7 @@ export default class PedidoCard extends Component {
                         </View>
                         <View style={styles.detallesGenerales}>
                             <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>{this.estado(parseFloat(this.props.pedido.estado))}</Text>
-                            <View style={{ backgroundColor: '#66CD00', borderRadius: 10 }}>
+                            <View style={{ backgroundColor: '#007aff', borderRadius: 10 }}>
                                 <Text style={{ padding: 5, color: 'white', fontWeight: 'bold' }}>${this.props.pedido.precio}</Text>
                             </View>
                         </View>
